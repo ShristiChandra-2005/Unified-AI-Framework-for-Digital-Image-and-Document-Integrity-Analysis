@@ -1,0 +1,62 @@
+{
+    "success": true,
+    "project_name": "Unified AI Framework for Digital Fraud Detection",
+    "backend_version": "1.0",
+    "phase": "Phase 3.5",
+    "report_version": "v1",
+    "module": "Module 1 - AI Generated Image Detection",
+    "prediction": "REAL",
+    "confidence": 100.0,
+    "confidence_label": "Very High",
+    "risk_level": "Low",
+    "risk_score": 0.0,
+    "status": "Completed",
+    "decision_summary": {
+        "title": "Low Risk AI Image",
+        "prediction": "REAL",
+        "confidence": "100.00%",
+        "risk": "Low",
+        "summary": [
+            "Model predicted the image as REAL.",
+            "Confidence is 100.00% (Very High).",
+            "Risk level is Low.",
+            "The image appears less suspicious according to model output.",
+            "Grad-CAM visualization is available for explainability."
+        ]
+    },
+    "model": {
+        "name": "efficientnet",
+        "version": "v1.0",
+        "dataset": "CIFAKE",
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1_score": null
+    },
+    "processing": {
+        "time_ms": 353.2,
+        "device": "cuda",
+        "timestamp": "2026-08-03 15:48:36",
+        "image_path": "outputs\\temp\\0000_(2).jpg"
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_0000_(2)_2026-08-03 15:48:36.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_0000_(2)_2026-08-03 15:48:36.png",
+        "error": null
+    },
+    "report": {
+        "id": "module1_20260803_154836_622344b7",
+        "json": null,
+        "pdf": null,
+        "created": "2026-08-03 15:48:36",
+        "downloadable": false
+    },
+    "probabilities": {
+        "FAKE": 0.0,
+        "REAL": 100.0
+    },
+    "uploaded_image": "outputs\\temp\\0000_(2).jpg",
+    "image_path": "outputs\\temp\\0000_(2).jpg",
+    "model_load_mode": "strict=True"
+}

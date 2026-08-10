@@ -1,0 +1,992 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI - Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "phase": "Phase 3",
+    "report_version": "v1",
+    "module": "Module 2 - Receipt Verification",
+    "prediction": "Manipulated",
+    "confidence": 51.39,
+    "confidence_label": "Low",
+    "risk_level": "High",
+    "risk_score": 48.61,
+    "status": "FAIL",
+    "processing_time": 14339.65,
+    "processing_time_ms": 14339.65,
+    "timestamp": "2026-08-04 00:26:30",
+    "device": "cuda",
+    "report_id": "module2_20260804_002630_964710c6",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260804_002630_964710c6.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260804_002630_964710c6.pdf",
+    "visualization_path": null,
+    "visualization_error": "N/A",
+    "model": {
+        "name": "EasyOCR + Rule-Based Metadata Validator",
+        "version": "v1.0",
+        "dataset": "SROIE + CORD",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "dataset": "SROIE + CORD",
+    "metrics": {
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "decision_summary": {
+        "title": "Receipt Verification Decision",
+        "merchant": "@k",
+        "invoice": null,
+        "risk": "High",
+        "summary": [
+            "Merchant detected: @k.",
+            "Invoice number: Not detected.",
+            "Date detected: Not detected.",
+            "Total amount detected: 2.5010415290670997e+21.",
+            "Validation status: FAIL.",
+            "Integrity score: 51.39.",
+            "Overall Risk Level: High."
+        ]
+    },
+    "visualization": {
+        "gradcam": null,
+        "heatmap": null,
+        "overlay": null,
+        "error": null
+    },
+    "processing": {
+        "time_ms": 14339.65,
+        "device": "cuda",
+        "timestamp": "2026-08-04 00:26:30",
+        "image_path": "outputs\\temp\\happenace500.jpg",
+        "ocr_time_ms": 14337.27
+    },
+    "probabilities": {},
+    "ocr": {
+        "detected_text": "15.300\n@k\nTransaction Successfu)\n0329 PMOn 04xJan 2025\nPaid to\nRegistrar Igdtu For Women\nE500\nStudentfee Sbalc\nXXXXXXXXX8949\nPunjab And Sind Bank\nTransfer Details\nTransactionID\nT2501041529067099398346\nDebited from\nXXXXXX1655\nr500\nUTR493999081177\nGondAgan Wowhstor) SpIl Expenso GharoRecapt\nContact PhonePe Suppordt\nPowered by",
+        "detected_words": [
+            "15.300",
+            "@k",
+            "Transaction Successfu)",
+            "0329 PMOn 04xJan 2025",
+            "Paid to",
+            "Registrar Igdtu For Women",
+            "E500",
+            "Studentfee Sbalc",
+            "XXXXXXXXX8949",
+            "Punjab And Sind Bank",
+            "Transfer Details",
+            "TransactionID",
+            "T2501041529067099398346",
+            "Debited from",
+            "XXXXXX1655",
+            "r500",
+            "UTR493999081177",
+            "GondAgan Wowhstor) SpIl Expenso GharoRecapt",
+            "Contact PhonePe Suppordt",
+            "Powered by"
+        ],
+        "boxes": [
+            [
+                [
+                    64.0,
+                    10.0
+                ],
+                [
+                    152.0,
+                    10.0
+                ],
+                [
+                    152.0,
+                    38.0
+                ],
+                [
+                    64.0,
+                    38.0
+                ]
+            ],
+            [
+                [
+                    486.0,
+                    12.0
+                ],
+                [
+                    532.0,
+                    12.0
+                ],
+                [
+                    532.0,
+                    36.0
+                ],
+                [
+                    486.0,
+                    36.0
+                ]
+            ],
+            [
+                [
+                    116.0,
+                    66.0
+                ],
+                [
+                    415.0,
+                    66.0
+                ],
+                [
+                    415.0,
+                    104.0
+                ],
+                [
+                    116.0,
+                    104.0
+                ]
+            ],
+            [
+                [
+                    116.0,
+                    98.0
+                ],
+                [
+                    364.0,
+                    98.0
+                ],
+                [
+                    364.0,
+                    128.0
+                ],
+                [
+                    116.0,
+                    128.0
+                ]
+            ],
+            [
+                [
+                    36.0,
+                    176.0
+                ],
+                [
+                    122.0,
+                    176.0
+                ],
+                [
+                    122.0,
+                    208.0
+                ],
+                [
+                    36.0,
+                    208.0
+                ]
+            ],
+            [
+                [
+                    129.0,
+                    231.0
+                ],
+                [
+                    465.0,
+                    231.0
+                ],
+                [
+                    465.0,
+                    269.0
+                ],
+                [
+                    129.0,
+                    269.0
+                ]
+            ],
+            [
+                [
+                    498.0,
+                    232.0
+                ],
+                [
+                    574.0,
+                    232.0
+                ],
+                [
+                    574.0,
+                    264.0
+                ],
+                [
+                    498.0,
+                    264.0
+                ]
+            ],
+            [
+                [
+                    126.0,
+                    257.0
+                ],
+                [
+                    352.0,
+                    257.0
+                ],
+                [
+                    352.0,
+                    302.0
+                ],
+                [
+                    126.0,
+                    302.0
+                ]
+            ],
+            [
+                [
+                    144.0,
+                    300.0
+                ],
+                [
+                    346.0,
+                    300.0
+                ],
+                [
+                    346.0,
+                    332.0
+                ],
+                [
+                    144.0,
+                    332.0
+                ]
+            ],
+            [
+                [
+                    127.0,
+                    333.0
+                ],
+                [
+                    373.0,
+                    333.0
+                ],
+                [
+                    373.0,
+                    369.0
+                ],
+                [
+                    127.0,
+                    369.0
+                ]
+            ],
+            [
+                [
+                    106.0,
+                    424.0
+                ],
+                [
+                    278.0,
+                    424.0
+                ],
+                [
+                    278.0,
+                    456.0
+                ],
+                [
+                    106.0,
+                    456.0
+                ]
+            ],
+            [
+                [
+                    42.0,
+                    482.0
+                ],
+                [
+                    178.0,
+                    482.0
+                ],
+                [
+                    178.0,
+                    514.0
+                ],
+                [
+                    42.0,
+                    514.0
+                ]
+            ],
+            [
+                [
+                    40.0,
+                    518.0
+                ],
+                [
+                    358.0,
+                    518.0
+                ],
+                [
+                    358.0,
+                    550.0
+                ],
+                [
+                    40.0,
+                    550.0
+                ]
+            ],
+            [
+                [
+                    36.0,
+                    571.0
+                ],
+                [
+                    165.0,
+                    571.0
+                ],
+                [
+                    165.0,
+                    600.0
+                ],
+                [
+                    36.0,
+                    600.0
+                ]
+            ],
+            [
+                [
+                    139.0,
+                    617.0
+                ],
+                [
+                    305.0,
+                    617.0
+                ],
+                [
+                    305.0,
+                    653.0
+                ],
+                [
+                    139.0,
+                    653.0
+                ]
+            ],
+            [
+                [
+                    504.0,
+                    620.0
+                ],
+                [
+                    566.0,
+                    620.0
+                ],
+                [
+                    566.0,
+                    648.0
+                ],
+                [
+                    504.0,
+                    648.0
+                ]
+            ],
+            [
+                [
+                    127.0,
+                    667.0
+                ],
+                [
+                    355.0,
+                    667.0
+                ],
+                [
+                    355.0,
+                    699.0
+                ],
+                [
+                    127.0,
+                    699.0
+                ]
+            ],
+            [
+                [
+                    42.0,
+                    827.0
+                ],
+                [
+                    562.0,
+                    827.0
+                ],
+                [
+                    562.0,
+                    860.0
+                ],
+                [
+                    42.0,
+                    860.0
+                ]
+            ],
+            [
+                [
+                    129.0,
+                    923.0
+                ],
+                [
+                    455.0,
+                    923.0
+                ],
+                [
+                    455.0,
+                    968.0
+                ],
+                [
+                    129.0,
+                    968.0
+                ]
+            ],
+            [
+                [
+                    244.0,
+                    1014.0
+                ],
+                [
+                    362.0,
+                    1014.0
+                ],
+                [
+                    362.0,
+                    1044.0
+                ],
+                [
+                    244.0,
+                    1044.0
+                ]
+            ]
+        ],
+        "word_confidences": [
+            0.16193937230955485,
+            0.022337511019469607,
+            0.8602112015661199,
+            0.11828035912580477,
+            0.647478574441334,
+            0.4771782915384733,
+            0.2472919225692749,
+            0.6537040956183787,
+            0.8602896670599264,
+            0.735347802753826,
+            0.949586596224382,
+            0.774481395572944,
+            0.9462291551608639,
+            0.8572993091180493,
+            0.8179775035813436,
+            0.3387569785118103,
+            0.8592688063633259,
+            0.15224579698211416,
+            0.5493423922024752,
+            0.6755921583741978
+        ],
+        "ocr_confidence": 58.52
+    },
+    "receipt": {
+        "merchant": "@k",
+        "invoice_number": null,
+        "date": null,
+        "subtotal": 1655.0,
+        "tax": 500.0,
+        "total": 2.5010415290670997e+21,
+        "currency": null,
+        "phone": "2501041529067099398346",
+        "address": "@k Transaction Successfu) 0329 PMOn 04xJan 2025",
+        "field_confidence": 66.67
+    },
+    "fields": {
+        "merchant": "@k",
+        "invoice_number": null,
+        "date": null,
+        "subtotal": 1655.0,
+        "tax": 500.0,
+        "total": 2.5010415290670997e+21,
+        "currency": null,
+        "phone": "2501041529067099398346",
+        "address": "@k Transaction Successfu) 0329 PMOn 04xJan 2025",
+        "field_confidence": 66.67
+    },
+    "validation": {
+        "status": "FAIL",
+        "merchant_found": true,
+        "invoice_found": false,
+        "date_found": false,
+        "total_found": true,
+        "tax_consistent": false,
+        "missing_fields": [
+            "date"
+        ],
+        "warnings": [
+            "Subtotal + tax does not match total",
+            "Invoice number not detected"
+        ],
+        "issues": [
+            "Missing mandatory field: date"
+        ]
+    },
+    "integrity": {
+        "ocr_score": 58.52,
+        "metadata_score": 35.0,
+        "field_completeness_score": 66.67,
+        "logical_consistency_score": 55.0,
+        "integrity_score": 51.39,
+        "risk_score": 48.61,
+        "risk_level": "High",
+        "status": "Manipulated"
+    },
+    "uploaded_image": "outputs\\temp\\happenace500.jpg",
+    "image_path": "outputs\\temp\\happenace500.jpg",
+    "details": {
+        "ocr": {
+            "detected_text": "15.300\n@k\nTransaction Successfu)\n0329 PMOn 04xJan 2025\nPaid to\nRegistrar Igdtu For Women\nE500\nStudentfee Sbalc\nXXXXXXXXX8949\nPunjab And Sind Bank\nTransfer Details\nTransactionID\nT2501041529067099398346\nDebited from\nXXXXXX1655\nr500\nUTR493999081177\nGondAgan Wowhstor) SpIl Expenso GharoRecapt\nContact PhonePe Suppordt\nPowered by",
+            "detected_words": [
+                "15.300",
+                "@k",
+                "Transaction Successfu)",
+                "0329 PMOn 04xJan 2025",
+                "Paid to",
+                "Registrar Igdtu For Women",
+                "E500",
+                "Studentfee Sbalc",
+                "XXXXXXXXX8949",
+                "Punjab And Sind Bank",
+                "Transfer Details",
+                "TransactionID",
+                "T2501041529067099398346",
+                "Debited from",
+                "XXXXXX1655",
+                "r500",
+                "UTR493999081177",
+                "GondAgan Wowhstor) SpIl Expenso GharoRecapt",
+                "Contact PhonePe Suppordt",
+                "Powered by"
+            ],
+            "boxes": [
+                [
+                    [
+                        64.0,
+                        10.0
+                    ],
+                    [
+                        152.0,
+                        10.0
+                    ],
+                    [
+                        152.0,
+                        38.0
+                    ],
+                    [
+                        64.0,
+                        38.0
+                    ]
+                ],
+                [
+                    [
+                        486.0,
+                        12.0
+                    ],
+                    [
+                        532.0,
+                        12.0
+                    ],
+                    [
+                        532.0,
+                        36.0
+                    ],
+                    [
+                        486.0,
+                        36.0
+                    ]
+                ],
+                [
+                    [
+                        116.0,
+                        66.0
+                    ],
+                    [
+                        415.0,
+                        66.0
+                    ],
+                    [
+                        415.0,
+                        104.0
+                    ],
+                    [
+                        116.0,
+                        104.0
+                    ]
+                ],
+                [
+                    [
+                        116.0,
+                        98.0
+                    ],
+                    [
+                        364.0,
+                        98.0
+                    ],
+                    [
+                        364.0,
+                        128.0
+                    ],
+                    [
+                        116.0,
+                        128.0
+                    ]
+                ],
+                [
+                    [
+                        36.0,
+                        176.0
+                    ],
+                    [
+                        122.0,
+                        176.0
+                    ],
+                    [
+                        122.0,
+                        208.0
+                    ],
+                    [
+                        36.0,
+                        208.0
+                    ]
+                ],
+                [
+                    [
+                        129.0,
+                        231.0
+                    ],
+                    [
+                        465.0,
+                        231.0
+                    ],
+                    [
+                        465.0,
+                        269.0
+                    ],
+                    [
+                        129.0,
+                        269.0
+                    ]
+                ],
+                [
+                    [
+                        498.0,
+                        232.0
+                    ],
+                    [
+                        574.0,
+                        232.0
+                    ],
+                    [
+                        574.0,
+                        264.0
+                    ],
+                    [
+                        498.0,
+                        264.0
+                    ]
+                ],
+                [
+                    [
+                        126.0,
+                        257.0
+                    ],
+                    [
+                        352.0,
+                        257.0
+                    ],
+                    [
+                        352.0,
+                        302.0
+                    ],
+                    [
+                        126.0,
+                        302.0
+                    ]
+                ],
+                [
+                    [
+                        144.0,
+                        300.0
+                    ],
+                    [
+                        346.0,
+                        300.0
+                    ],
+                    [
+                        346.0,
+                        332.0
+                    ],
+                    [
+                        144.0,
+                        332.0
+                    ]
+                ],
+                [
+                    [
+                        127.0,
+                        333.0
+                    ],
+                    [
+                        373.0,
+                        333.0
+                    ],
+                    [
+                        373.0,
+                        369.0
+                    ],
+                    [
+                        127.0,
+                        369.0
+                    ]
+                ],
+                [
+                    [
+                        106.0,
+                        424.0
+                    ],
+                    [
+                        278.0,
+                        424.0
+                    ],
+                    [
+                        278.0,
+                        456.0
+                    ],
+                    [
+                        106.0,
+                        456.0
+                    ]
+                ],
+                [
+                    [
+                        42.0,
+                        482.0
+                    ],
+                    [
+                        178.0,
+                        482.0
+                    ],
+                    [
+                        178.0,
+                        514.0
+                    ],
+                    [
+                        42.0,
+                        514.0
+                    ]
+                ],
+                [
+                    [
+                        40.0,
+                        518.0
+                    ],
+                    [
+                        358.0,
+                        518.0
+                    ],
+                    [
+                        358.0,
+                        550.0
+                    ],
+                    [
+                        40.0,
+                        550.0
+                    ]
+                ],
+                [
+                    [
+                        36.0,
+                        571.0
+                    ],
+                    [
+                        165.0,
+                        571.0
+                    ],
+                    [
+                        165.0,
+                        600.0
+                    ],
+                    [
+                        36.0,
+                        600.0
+                    ]
+                ],
+                [
+                    [
+                        139.0,
+                        617.0
+                    ],
+                    [
+                        305.0,
+                        617.0
+                    ],
+                    [
+                        305.0,
+                        653.0
+                    ],
+                    [
+                        139.0,
+                        653.0
+                    ]
+                ],
+                [
+                    [
+                        504.0,
+                        620.0
+                    ],
+                    [
+                        566.0,
+                        620.0
+                    ],
+                    [
+                        566.0,
+                        648.0
+                    ],
+                    [
+                        504.0,
+                        648.0
+                    ]
+                ],
+                [
+                    [
+                        127.0,
+                        667.0
+                    ],
+                    [
+                        355.0,
+                        667.0
+                    ],
+                    [
+                        355.0,
+                        699.0
+                    ],
+                    [
+                        127.0,
+                        699.0
+                    ]
+                ],
+                [
+                    [
+                        42.0,
+                        827.0
+                    ],
+                    [
+                        562.0,
+                        827.0
+                    ],
+                    [
+                        562.0,
+                        860.0
+                    ],
+                    [
+                        42.0,
+                        860.0
+                    ]
+                ],
+                [
+                    [
+                        129.0,
+                        923.0
+                    ],
+                    [
+                        455.0,
+                        923.0
+                    ],
+                    [
+                        455.0,
+                        968.0
+                    ],
+                    [
+                        129.0,
+                        968.0
+                    ]
+                ],
+                [
+                    [
+                        244.0,
+                        1014.0
+                    ],
+                    [
+                        362.0,
+                        1014.0
+                    ],
+                    [
+                        362.0,
+                        1044.0
+                    ],
+                    [
+                        244.0,
+                        1044.0
+                    ]
+                ]
+            ],
+            "word_confidences": [
+                0.16193937230955485,
+                0.022337511019469607,
+                0.8602112015661199,
+                0.11828035912580477,
+                0.647478574441334,
+                0.4771782915384733,
+                0.2472919225692749,
+                0.6537040956183787,
+                0.8602896670599264,
+                0.735347802753826,
+                0.949586596224382,
+                0.774481395572944,
+                0.9462291551608639,
+                0.8572993091180493,
+                0.8179775035813436,
+                0.3387569785118103,
+                0.8592688063633259,
+                0.15224579698211416,
+                0.5493423922024752,
+                0.6755921583741978
+            ],
+            "ocr_confidence": 58.52
+        },
+        "receipt": {
+            "merchant": "@k",
+            "invoice_number": null,
+            "date": null,
+            "subtotal": 1655.0,
+            "tax": 500.0,
+            "total": 2.5010415290670997e+21,
+            "currency": null,
+            "phone": "2501041529067099398346",
+            "address": "@k Transaction Successfu) 0329 PMOn 04xJan 2025",
+            "field_confidence": 66.67
+        },
+        "validation": {
+            "status": "FAIL",
+            "merchant_found": true,
+            "invoice_found": false,
+            "date_found": false,
+            "total_found": true,
+            "tax_consistent": false,
+            "missing_fields": [
+                "date"
+            ],
+            "warnings": [
+                "Subtotal + tax does not match total",
+                "Invoice number not detected"
+            ],
+            "issues": [
+                "Missing mandatory field: date"
+            ]
+        },
+        "integrity": {
+            "ocr_score": 58.52,
+            "metadata_score": 35.0,
+            "field_completeness_score": 66.67,
+            "logical_consistency_score": 55.0,
+            "integrity_score": 51.39,
+            "risk_score": 48.61,
+            "risk_level": "High",
+            "status": "Manipulated"
+        }
+    },
+    "pdf_error": null,
+    "report": {
+        "id": "module2_20260804_002630_964710c6",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260804_002630_964710c6.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260804_002630_964710c6.pdf",
+        "created": "2026-08-04 00:26:30",
+        "downloadable": true
+    }
+}

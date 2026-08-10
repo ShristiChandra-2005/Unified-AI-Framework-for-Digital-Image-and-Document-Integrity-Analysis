@@ -1,0 +1,68 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI",
+    "project_subtitle": "Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "report_version": "v1",
+    "module": "Module 1 - AI Generated Image Detection",
+    "prediction": "REAL",
+    "confidence": 87.17,
+    "confidence_label": "High",
+    "risk_level": "Low",
+    "risk_score": 12.83,
+    "status": "Completed",
+    "processing_time": 2209.09,
+    "processing_time_ms": 2209.09,
+    "timestamp": "2026-08-06 17:14:54",
+    "device": "cuda",
+    "report_id": "module1_20260806_171454_c7b124c3",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171454_c7b124c3.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171454_c7b124c3.pdf",
+    "decision_summary": {
+        "title": "Low Risk AI Image Decision",
+        "prediction": "REAL",
+        "confidence": "87.17%",
+        "risk": "Low",
+        "summary": [
+            "The uploaded image has been classified as REAL.",
+            "The model confidence is 87.17% (High).",
+            "The image appears less suspicious according to the current model output.",
+            "Grad-CAM visualization supports the prediction by highlighting influential image regions.",
+            "Overall risk level: Low."
+        ]
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_me__pic_97eaac37_20260806_171454.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_me__pic_97eaac37_20260806_171454.png",
+        "error": "N/A"
+    },
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_me__pic_97eaac37_20260806_171454.png",
+    "visualization_error": "N/A",
+    "probabilities": {
+        "FAKE": 12.83,
+        "REAL": 87.17
+    },
+    "uploaded_image": "outputs\\temp\\me__pic_97eaac37.jpg",
+    "image_path": "outputs\\temp\\me__pic_97eaac37.jpg",
+    "model": {
+        "name": "efficientnet",
+        "version": "N/A",
+        "dataset": "CIFAKE",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "model_load_mode": "strict=True",
+    "details": {},
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_me__pic_97eaac37_20260806_171454.png",
+    "pdf_error": null,
+    "report": {
+        "id": "module1_20260806_171454_c7b124c3",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171454_c7b124c3.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171454_c7b124c3.pdf",
+        "created": "2026-08-06 17:14:54",
+        "downloadable": true
+    }
+}

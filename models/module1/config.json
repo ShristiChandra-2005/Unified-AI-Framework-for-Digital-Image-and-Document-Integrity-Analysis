@@ -1,0 +1,40 @@
+{
+    "project_title": "AI-Generated Image Detection Using Deep Learning",
+    "module": "Module 1 - AI Generated Image Detection",
+    "dataset": "CIFAKE",
+    "best_model": "efficientnet",
+    "best_model_display_name": "EfficientNet-B0",
+    "class_names": [
+        "FAKE",
+        "REAL"
+    ],
+    "image_size": 224,
+    "normalization": {
+        "mean": [
+            0.485,
+            0.456,
+            0.406
+        ],
+        "std": [
+            0.229,
+            0.224,
+            0.225
+        ]
+    },
+    "metrics": {
+        "model_name": "efficientnet",
+        "display_name": "EfficientNet-B0",
+        "accuracy": 0.98655,
+        "precision": 0.991911839045597,
+        "recall_sensitivity": 0.9811,
+        "specificity": 0.992,
+        "f1_score": 0.9864762958121763,
+        "balanced_accuracy": 0.98655,
+        "mcc": 0.9731578121570478,
+        "roc_auc": 0.9991212149999998,
+        "average_inference_time_seconds": 0.010051880669593812,
+        "parameter_count": 4010110,
+        "total_training_time_seconds": 21439.13807940483,
+        "selection_score": 0.9870406739859924
+    }
+}

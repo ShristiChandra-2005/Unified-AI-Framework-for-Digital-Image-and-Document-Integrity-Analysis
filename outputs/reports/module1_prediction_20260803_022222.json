@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "module": "Module 1 - AI Generated Image Detection",
+    "model_name": "efficientnet",
+    "model_load_mode": "strict=True",
+    "image_path": "outputs\\temp\\test_module1.jpg",
+    "prediction": "FAKE",
+    "confidence": 100.0,
+    "inference_time_ms": 261.33,
+    "probabilities": {
+        "FAKE": 100.0,
+        "REAL": 0.0
+    },
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_test_module1_20260803_022222.png"
+}

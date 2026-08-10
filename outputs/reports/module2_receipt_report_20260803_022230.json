@@ -1,0 +1,37 @@
+{
+    "success": true,
+    "module": "Module 2 - Receipt Verification",
+    "image_path": "outputs\\temp\\test_receipt.jpg",
+    "inference_time_ms": 5509.29,
+    "extracted_fields": {
+        "merchant": "3-1707067",
+        "date": "01-03-18",
+        "invoice_number": "Invoice",
+        "subtotal": 6.0,
+        "tax": 20.0,
+        "total": 549584896.0,
+        "currency": null,
+        "phone": "03-89410243",
+        "address": "NO.5O JALAN PBS 14/11"
+    },
+    "ocr": {
+        "text": "3-1707067\n(481500-M)\nW KHOO HARDWARE SDN BHD\nNO.5O\nJALAN PBS 14/11\nKAWASAN PERINDUSTRIAN BUKIT SERDANG,\nTel\n03-89410243\nFax\n03-89410243\nGST\nNo:\n000549584896\nTax Invoice\nInvoice No_\nCR 1803/0064\nDate\n01-03-18 5.23.26 PM\nCashier No.\nkhoo\nCounter No_\ncl\nPrinted Date\n01-03-18 5.23.30 PM\nItem Name\nQty_\nUnit Price\nAmount\nAIR ADAPTOR\n5\n4.00\n20.00 SR\n5\nItem(s)\nTotal (MYR)\n20.00\nGST\n6c\n1,20\nNet Total (MYR)\n21.20\nRounding Adj:\nO.0Q\nNet Total Rounded (MYR)\n21.20\nCash\n21.20\nChange\nOQ\n2464421\nGST Summary\nItem\nAmount (MYR)\naST (MYR)\nSR\n6%\n20.00\n1.20\nThank You. Please Come Agairi\nReg",
+        "confidence": 85.68
+    },
+    "validation": {
+        "status": "WARNING",
+        "issues": [],
+        "warnings": [
+            "Subtotal + tax does not match total"
+        ],
+        "missing_fields": []
+    },
+    "integrity": {
+        "ocr_confidence": 85.68,
+        "field_completeness_score": 88.89,
+        "metadata_validation_score": 75.0,
+        "logical_consistency_score": 90.0,
+        "integrity_score": 83.23,
+        "status": "Suspicious"
+    }
+}

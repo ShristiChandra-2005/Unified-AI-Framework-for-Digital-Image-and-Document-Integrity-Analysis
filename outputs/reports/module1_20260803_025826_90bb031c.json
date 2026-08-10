@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "project_name": "Unified AI Framework for Digital Fraud Detection",
+    "backend_version": "1.0",
+    "phase": "Phase 3",
+    "report_version": "v1",
+    "report_id": "module1_20260803_025826_90bb031c",
+    "module": "Module 1 - AI Generated Image Detection",
+    "model_name": "efficientnet",
+    "model_version": "v1.0",
+    "dataset": "CIFAKE",
+    "prediction": "FAKE",
+    "confidence": 100.0,
+    "confidence_label": "Very High",
+    "risk_level": "High",
+    "risk_score": 100.0,
+    "status": "Completed",
+    "processing_time_ms": 421.78,
+    "device": "cuda",
+    "timestamp": "2026-08-03 02:58:26",
+    "uploaded_image": "outputs\\temp\\test_module1.jpg",
+    "image_path": "outputs\\temp\\test_module1.jpg",
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_test_module1_2026-08-03 02:58:26.png",
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_test_module1_2026-08-03 02:58:26.png",
+    "visualization_error": null,
+    "decision_summary": {
+        "title": "High Risk AI Image Decision",
+        "summary": [
+            "Model predicted the image as FAKE.",
+            "Prediction confidence is 100.00%.",
+            "Confidence label is Very High.",
+            "Estimated risk level is High.",
+            "Strong AI-generated or synthetic visual patterns were detected.",
+            "Grad-CAM visualization was generated for explainability."
+        ]
+    },
+    "probabilities": {
+        "FAKE": 100.0,
+        "REAL": 0.0
+    },
+    "model_load_mode": "strict=True",
+    "metrics": {
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1_score": null
+    },
+    "pdf_report_path": null
+}

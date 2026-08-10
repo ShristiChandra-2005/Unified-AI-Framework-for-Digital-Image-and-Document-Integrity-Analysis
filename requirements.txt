@@ -1,0 +1,14 @@
+torch
+torchvision
+timm
+easyocr
+opencv-python
+numpy
+pandas
+matplotlib
+Pillow
+streamlit
+scikit-learn
+joblib
+plotly
+reportlab

@@ -1,0 +1,1731 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI",
+    "project_subtitle": "Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "report_version": "v1",
+    "module": "Module 2 - Receipt Verification",
+    "prediction": "Suspicious",
+    "receipt_status": "Suspicious",
+    "confidence": 83.33,
+    "confidence_label": "Medium",
+    "risk_level": "Medium",
+    "risk_score": 16.67,
+    "status": "PASS",
+    "validation_status": "PASS",
+    "processing_time": 47383.75,
+    "processing_time_ms": 47383.75,
+    "timestamp": "2026-08-06 17:46:29",
+    "device": "cuda",
+    "report_id": "module2_20260806_174629_1742ac49",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260806_174629_1742ac49.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260806_174629_1742ac49.pdf",
+    "decision_summary": {
+        "title": "Medium Risk Receipt Verification Decision",
+        "receipt_status": "Suspicious",
+        "merchant": "UNIHAKKA INTERNATIONAL SDN BHD",
+        "invoice_number": "A031x8",
+        "date": "28 Mar 2018",
+        "total": 20.0,
+        "validation_status": "PASS",
+        "integrity_score": 83.33,
+        "risk": "Medium",
+        "recommendation": "Manual verification is recommended before accepting this receipt.",
+        "summary": [
+            "Receipt status: Suspicious.",
+            "Merchant detected: UNIHAKKA INTERNATIONAL SDN BHD.",
+            "Invoice number: A031x8.",
+            "Date detected: 28 Mar 2018.",
+            "Total amount detected: 20.0.",
+            "Validation status: PASS.",
+            "Integrity score: 83.33.",
+            "Overall risk level: Medium.",
+            "OCR and metadata validation checks passed successfully.",
+            "Recommendation: Manual verification is recommended before accepting this receipt."
+        ]
+    },
+    "processing": {
+        "time_ms": 47383.75,
+        "device": "cuda",
+        "timestamp": "2026-08-06 17:46:29",
+        "image_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\temp\\X51005442334_daf9f828.jpg",
+        "ocr_time_ms": 47374.54
+    },
+    "ocr": {
+        "detected_text": "A031x8\nUNIHAKKA INTERNATIONAL SDN BHD\n28 Mar 2018 18.14\n(867388-U)\n12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:\nTampoiz1200 Johor8ahru,;Johor\nTAXINVOICE\nInvoice # : OR18032802170324\nItem;\nQf\nTotal\n\"SR [00700000035:1 Meat v 3 Vege\n87.10\n87,10\nSR' [0010OOOQ015-Vegetable\nS1.10\n61.10:\nTotal Amount: $8,20\n'GST @6%; 50.46\nNai Total: 58,20:\nPaymant Mode_\nAmount\nCASH\n88,20\n'Change\nSC,Qp\n'GST Summary\nAvnpunt[s};\nTaxit}\nSaeGST @63,\n774\n0.46,\nGST REG 4000856105584\nBAR WANG RICE@PERMAS JAYA\n(Prlce Inclusive Ql GST}\nThahk You & Come Again]\nLike and Follow Us.on Facebook]\nFacsbook conBarwangRlce",
+        "detected_words": [
+            "A031x8",
+            "UNIHAKKA INTERNATIONAL SDN BHD",
+            "28 Mar 2018 18.14",
+            "(867388-U)",
+            "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+            "Tampoiz1200 Johor8ahru,;Johor",
+            "TAXINVOICE",
+            "Invoice # : OR18032802170324",
+            "Item;",
+            "Qf",
+            "Total",
+            "\"SR [00700000035:1 Meat v 3 Vege",
+            "87.10",
+            "87,10",
+            "SR' [0010OOOQ015-Vegetable",
+            "S1.10",
+            "61.10:",
+            "Total Amount: $8,20",
+            "'GST @6%; 50.46",
+            "Nai Total: 58,20:",
+            "Paymant Mode_",
+            "Amount",
+            "CASH",
+            "88,20",
+            "'Change",
+            "SC,Qp",
+            "'GST Summary",
+            "Avnpunt[s};",
+            "Taxit}",
+            "SaeGST @63,",
+            "774",
+            "0.46,",
+            "GST REG 4000856105584",
+            "BAR WANG RICE@PERMAS JAYA",
+            "(Prlce Inclusive Ql GST}",
+            "Thahk You & Come Again]",
+            "Like and Follow Us.on Facebook]",
+            "Facsbook conBarwangRlce"
+        ],
+        "boxes": [
+            [
+                [
+                    594.0,
+                    286.0
+                ],
+                [
+                    690.0,
+                    286.0
+                ],
+                [
+                    690.0,
+                    331.0
+                ],
+                [
+                    594.0,
+                    331.0
+                ]
+            ],
+            [
+                [
+                    364.0,
+                    355.0
+                ],
+                [
+                    660.0,
+                    355.0
+                ],
+                [
+                    660.0,
+                    379.0
+                ],
+                [
+                    364.0,
+                    379.0
+                ]
+            ],
+            [
+                [
+                    455.0,
+                    373.0
+                ],
+                [
+                    567.0,
+                    373.0
+                ],
+                [
+                    567.0,
+                    393.0
+                ],
+                [
+                    455.0,
+                    393.0
+                ]
+            ],
+            [
+                [
+                    476.0,
+                    391.0
+                ],
+                [
+                    549.0,
+                    391.0
+                ],
+                [
+                    549.0,
+                    411.0
+                ],
+                [
+                    476.0,
+                    411.0
+                ]
+            ],
+            [
+                [
+                    383.0,
+                    406.0
+                ],
+                [
+                    644.0,
+                    406.0
+                ],
+                [
+                    644.0,
+                    432.0
+                ],
+                [
+                    383.0,
+                    432.0
+                ]
+            ],
+            [
+                [
+                    413.0,
+                    424.0
+                ],
+                [
+                    612.0,
+                    424.0
+                ],
+                [
+                    612.0,
+                    450.0
+                ],
+                [
+                    413.0,
+                    450.0
+                ]
+            ],
+            [
+                [
+                    468.0,
+                    444.0
+                ],
+                [
+                    555.0,
+                    444.0
+                ],
+                [
+                    555.0,
+                    465.0
+                ],
+                [
+                    468.0,
+                    465.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    460.0
+                ],
+                [
+                    537.0,
+                    460.0
+                ],
+                [
+                    537.0,
+                    481.0
+                ],
+                [
+                    349.0,
+                    481.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    487.0
+                ],
+                [
+                    383.0,
+                    487.0
+                ],
+                [
+                    383.0,
+                    505.0
+                ],
+                [
+                    349.0,
+                    505.0
+                ]
+            ],
+            [
+                [
+                    452.0,
+                    485.0
+                ],
+                [
+                    482.0,
+                    485.0
+                ],
+                [
+                    482.0,
+                    506.0
+                ],
+                [
+                    452.0,
+                    506.0
+                ]
+            ],
+            [
+                [
+                    637.0,
+                    485.0
+                ],
+                [
+                    675.0,
+                    485.0
+                ],
+                [
+                    675.0,
+                    505.0
+                ],
+                [
+                    637.0,
+                    505.0
+                ]
+            ],
+            [
+                [
+                    350.0,
+                    503.0
+                ],
+                [
+                    562.0,
+                    503.0
+                ],
+                [
+                    562.0,
+                    527.0
+                ],
+                [
+                    350.0,
+                    527.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    525.0
+                ],
+                [
+                    390.0,
+                    525.0
+                ],
+                [
+                    390.0,
+                    545.0
+                ],
+                [
+                    349.0,
+                    545.0
+                ]
+            ],
+            [
+                [
+                    635.0,
+                    525.0
+                ],
+                [
+                    674.0,
+                    525.0
+                ],
+                [
+                    674.0,
+                    546.0
+                ],
+                [
+                    635.0,
+                    546.0
+                ]
+            ],
+            [
+                [
+                    350.0,
+                    549.0
+                ],
+                [
+                    527.0,
+                    549.0
+                ],
+                [
+                    527.0,
+                    576.0
+                ],
+                [
+                    350.0,
+                    576.0
+                ]
+            ],
+            [
+                [
+                    351.0,
+                    572.0
+                ],
+                [
+                    391.0,
+                    572.0
+                ],
+                [
+                    391.0,
+                    593.0
+                ],
+                [
+                    351.0,
+                    593.0
+                ]
+            ],
+            [
+                [
+                    635.0,
+                    572.0
+                ],
+                [
+                    675.0,
+                    572.0
+                ],
+                [
+                    675.0,
+                    591.0
+                ],
+                [
+                    635.0,
+                    591.0
+                ]
+            ],
+            [
+                [
+                    551.0,
+                    600.0
+                ],
+                [
+                    675.0,
+                    600.0
+                ],
+                [
+                    675.0,
+                    624.0
+                ],
+                [
+                    551.0,
+                    624.0
+                ]
+            ],
+            [
+                [
+                    564.0,
+                    621.0
+                ],
+                [
+                    674.0,
+                    621.0
+                ],
+                [
+                    674.0,
+                    642.0
+                ],
+                [
+                    564.0,
+                    642.0
+                ]
+            ],
+            [
+                [
+                    573.0,
+                    639.0
+                ],
+                [
+                    674.0,
+                    639.0
+                ],
+                [
+                    674.0,
+                    659.0
+                ],
+                [
+                    573.0,
+                    659.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    661.0
+                ],
+                [
+                    444.0,
+                    661.0
+                ],
+                [
+                    444.0,
+                    688.0
+                ],
+                [
+                    349.0,
+                    688.0
+                ]
+            ],
+            [
+                [
+                    621.0,
+                    663.0
+                ],
+                [
+                    674.0,
+                    663.0
+                ],
+                [
+                    674.0,
+                    683.0
+                ],
+                [
+                    621.0,
+                    683.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    684.0
+                ],
+                [
+                    395.0,
+                    684.0
+                ],
+                [
+                    395.0,
+                    703.0
+                ],
+                [
+                    349.0,
+                    703.0
+                ]
+            ],
+            [
+                [
+                    633.0,
+                    685.0
+                ],
+                [
+                    671.0,
+                    685.0
+                ],
+                [
+                    671.0,
+                    703.0
+                ],
+                [
+                    633.0,
+                    703.0
+                ]
+            ],
+            [
+                [
+                    347.0,
+                    699.0
+                ],
+                [
+                    405.0,
+                    699.0
+                ],
+                [
+                    405.0,
+                    725.0
+                ],
+                [
+                    347.0,
+                    725.0
+                ]
+            ],
+            [
+                [
+                    633.0,
+                    701.0
+                ],
+                [
+                    674.0,
+                    701.0
+                ],
+                [
+                    674.0,
+                    722.0
+                ],
+                [
+                    633.0,
+                    722.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    745.0
+                ],
+                [
+                    428.0,
+                    745.0
+                ],
+                [
+                    428.0,
+                    765.0
+                ],
+                [
+                    349.0,
+                    765.0
+                ]
+            ],
+            [
+                [
+                    511.0,
+                    745.0
+                ],
+                [
+                    569.0,
+                    745.0
+                ],
+                [
+                    569.0,
+                    764.0
+                ],
+                [
+                    511.0,
+                    764.0
+                ]
+            ],
+            [
+                [
+                    635.0,
+                    745.0
+                ],
+                [
+                    674.0,
+                    745.0
+                ],
+                [
+                    674.0,
+                    766.0
+                ],
+                [
+                    635.0,
+                    766.0
+                ]
+            ],
+            [
+                [
+                    349.0,
+                    765.0
+                ],
+                [
+                    433.0,
+                    765.0
+                ],
+                [
+                    433.0,
+                    785.0
+                ],
+                [
+                    349.0,
+                    785.0
+                ]
+            ],
+            [
+                [
+                    540.0,
+                    767.0
+                ],
+                [
+                    569.0,
+                    767.0
+                ],
+                [
+                    569.0,
+                    783.0
+                ],
+                [
+                    540.0,
+                    783.0
+                ]
+            ],
+            [
+                [
+                    645.0,
+                    767.0
+                ],
+                [
+                    673.0,
+                    767.0
+                ],
+                [
+                    673.0,
+                    783.0
+                ],
+                [
+                    645.0,
+                    783.0
+                ]
+            ],
+            [
+                [
+                    428.0,
+                    791.0
+                ],
+                [
+                    587.0,
+                    791.0
+                ],
+                [
+                    587.0,
+                    811.0
+                ],
+                [
+                    428.0,
+                    811.0
+                ]
+            ],
+            [
+                [
+                    404.0,
+                    808.0
+                ],
+                [
+                    616.0,
+                    808.0
+                ],
+                [
+                    616.0,
+                    832.0
+                ],
+                [
+                    404.0,
+                    832.0
+                ]
+            ],
+            [
+                [
+                    436.0,
+                    828.0
+                ],
+                [
+                    582.0,
+                    828.0
+                ],
+                [
+                    582.0,
+                    849.0
+                ],
+                [
+                    436.0,
+                    849.0
+                ]
+            ],
+            [
+                [
+                    430.0,
+                    842.0
+                ],
+                [
+                    589.0,
+                    842.0
+                ],
+                [
+                    589.0,
+                    869.0
+                ],
+                [
+                    430.0,
+                    869.0
+                ]
+            ],
+            [
+                [
+                    411.0,
+                    860.0
+                ],
+                [
+                    606.0,
+                    860.0
+                ],
+                [
+                    606.0,
+                    885.0
+                ],
+                [
+                    411.0,
+                    885.0
+                ]
+            ],
+            [
+                [
+                    423.0,
+                    881.0
+                ],
+                [
+                    595.0,
+                    881.0
+                ],
+                [
+                    595.0,
+                    902.0
+                ],
+                [
+                    423.0,
+                    902.0
+                ]
+            ]
+        ],
+        "word_confidences": [
+            0.36181287038806625,
+            0.5607282528123219,
+            0.8012175599423212,
+            0.9693451052511944,
+            0.7531746499030351,
+            0.2487765694791087,
+            0.9205703765578132,
+            0.9314388224155643,
+            0.5258007111329793,
+            0.7238736103125838,
+            0.9786049312714226,
+            0.18626374375717447,
+            0.4115634991635399,
+            0.40404323353816807,
+            0.10646515113708775,
+            0.5796696218515239,
+            0.2997065405520414,
+            0.7060970524326059,
+            0.3250615579906807,
+            0.20410602474771747,
+            0.4614680211625358,
+            0.988494316901692,
+            0.6482678055763245,
+            0.6624149788673479,
+            0.8650571685220618,
+            0.2377593073006586,
+            0.1847906103450752,
+            0.31584699720533904,
+            0.22020477407098862,
+            0.17590976462746546,
+            0.8199798464775085,
+            0.23355055417815035,
+            0.2356461905108482,
+            0.9134290191104488,
+            0.5045597737261706,
+            0.5017469716368141,
+            0.39029448573733655,
+            0.3434135877694502
+        ],
+        "ocr_confidence": 51.85,
+        "line_count": 38
+    },
+    "receipt": {
+        "merchant": "UNIHAKKA INTERNATIONAL SDN BHD",
+        "date": "28 Mar 2018",
+        "invoice_number": "A031x8",
+        "subtotal": null,
+        "tax": 4.0,
+        "total": 20.0,
+        "currency": "USD",
+        "phone": "18032802170324",
+        "address": "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+        "field_confidence": 88.89
+    },
+    "fields": {
+        "merchant": "UNIHAKKA INTERNATIONAL SDN BHD",
+        "date": "28 Mar 2018",
+        "invoice_number": "A031x8",
+        "subtotal": null,
+        "tax": 4.0,
+        "total": 20.0,
+        "currency": "USD",
+        "phone": "18032802170324",
+        "address": "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+        "field_confidence": 88.89
+    },
+    "validation": {
+        "status": "PASS",
+        "validation_status": "PASS",
+        "merchant_found": true,
+        "invoice_found": true,
+        "date_found": true,
+        "date_valid": true,
+        "total_found": true,
+        "amount_valid": true,
+        "tax_consistent": true,
+        "duplicate_fields": [],
+        "missing_fields": [],
+        "warnings": [],
+        "issues": []
+    },
+    "integrity": {
+        "ocr_score": 51.85,
+        "metadata_score": 100.0,
+        "field_completeness_score": 88.89,
+        "logical_consistency_score": 100.0,
+        "integrity_score": 83.33,
+        "risk_score": 16.67,
+        "risk_level": "Medium",
+        "status": "Suspicious"
+    },
+    "uploaded_image": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\temp\\X51005442334_daf9f828.jpg",
+    "image_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\temp\\X51005442334_daf9f828.jpg",
+    "merchant": "UNIHAKKA INTERNATIONAL SDN BHD",
+    "invoice_number": "A031x8",
+    "invoice_date": "28 Mar 2018",
+    "total_amount": 20.0,
+    "integrity_score": 83.33,
+    "validation_checks": [
+        {
+            "check": "Merchant Found",
+            "result": "Passed"
+        },
+        {
+            "check": "Invoice Found",
+            "result": "Passed"
+        },
+        {
+            "check": "Date Found",
+            "result": "Passed"
+        },
+        {
+            "check": "Date Valid",
+            "result": "Passed"
+        },
+        {
+            "check": "Amount Valid",
+            "result": "Passed"
+        },
+        {
+            "check": "Tax Consistent",
+            "result": "Passed"
+        }
+    ],
+    "details": {
+        "ocr": {
+            "detected_text": "A031x8\nUNIHAKKA INTERNATIONAL SDN BHD\n28 Mar 2018 18.14\n(867388-U)\n12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:\nTampoiz1200 Johor8ahru,;Johor\nTAXINVOICE\nInvoice # : OR18032802170324\nItem;\nQf\nTotal\n\"SR [00700000035:1 Meat v 3 Vege\n87.10\n87,10\nSR' [0010OOOQ015-Vegetable\nS1.10\n61.10:\nTotal Amount: $8,20\n'GST @6%; 50.46\nNai Total: 58,20:\nPaymant Mode_\nAmount\nCASH\n88,20\n'Change\nSC,Qp\n'GST Summary\nAvnpunt[s};\nTaxit}\nSaeGST @63,\n774\n0.46,\nGST REG 4000856105584\nBAR WANG RICE@PERMAS JAYA\n(Prlce Inclusive Ql GST}\nThahk You & Come Again]\nLike and Follow Us.on Facebook]\nFacsbook conBarwangRlce",
+            "detected_words": [
+                "A031x8",
+                "UNIHAKKA INTERNATIONAL SDN BHD",
+                "28 Mar 2018 18.14",
+                "(867388-U)",
+                "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+                "Tampoiz1200 Johor8ahru,;Johor",
+                "TAXINVOICE",
+                "Invoice # : OR18032802170324",
+                "Item;",
+                "Qf",
+                "Total",
+                "\"SR [00700000035:1 Meat v 3 Vege",
+                "87.10",
+                "87,10",
+                "SR' [0010OOOQ015-Vegetable",
+                "S1.10",
+                "61.10:",
+                "Total Amount: $8,20",
+                "'GST @6%; 50.46",
+                "Nai Total: 58,20:",
+                "Paymant Mode_",
+                "Amount",
+                "CASH",
+                "88,20",
+                "'Change",
+                "SC,Qp",
+                "'GST Summary",
+                "Avnpunt[s};",
+                "Taxit}",
+                "SaeGST @63,",
+                "774",
+                "0.46,",
+                "GST REG 4000856105584",
+                "BAR WANG RICE@PERMAS JAYA",
+                "(Prlce Inclusive Ql GST}",
+                "Thahk You & Come Again]",
+                "Like and Follow Us.on Facebook]",
+                "Facsbook conBarwangRlce"
+            ],
+            "boxes": [
+                [
+                    [
+                        594.0,
+                        286.0
+                    ],
+                    [
+                        690.0,
+                        286.0
+                    ],
+                    [
+                        690.0,
+                        331.0
+                    ],
+                    [
+                        594.0,
+                        331.0
+                    ]
+                ],
+                [
+                    [
+                        364.0,
+                        355.0
+                    ],
+                    [
+                        660.0,
+                        355.0
+                    ],
+                    [
+                        660.0,
+                        379.0
+                    ],
+                    [
+                        364.0,
+                        379.0
+                    ]
+                ],
+                [
+                    [
+                        455.0,
+                        373.0
+                    ],
+                    [
+                        567.0,
+                        373.0
+                    ],
+                    [
+                        567.0,
+                        393.0
+                    ],
+                    [
+                        455.0,
+                        393.0
+                    ]
+                ],
+                [
+                    [
+                        476.0,
+                        391.0
+                    ],
+                    [
+                        549.0,
+                        391.0
+                    ],
+                    [
+                        549.0,
+                        411.0
+                    ],
+                    [
+                        476.0,
+                        411.0
+                    ]
+                ],
+                [
+                    [
+                        383.0,
+                        406.0
+                    ],
+                    [
+                        644.0,
+                        406.0
+                    ],
+                    [
+                        644.0,
+                        432.0
+                    ],
+                    [
+                        383.0,
+                        432.0
+                    ]
+                ],
+                [
+                    [
+                        413.0,
+                        424.0
+                    ],
+                    [
+                        612.0,
+                        424.0
+                    ],
+                    [
+                        612.0,
+                        450.0
+                    ],
+                    [
+                        413.0,
+                        450.0
+                    ]
+                ],
+                [
+                    [
+                        468.0,
+                        444.0
+                    ],
+                    [
+                        555.0,
+                        444.0
+                    ],
+                    [
+                        555.0,
+                        465.0
+                    ],
+                    [
+                        468.0,
+                        465.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        460.0
+                    ],
+                    [
+                        537.0,
+                        460.0
+                    ],
+                    [
+                        537.0,
+                        481.0
+                    ],
+                    [
+                        349.0,
+                        481.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        487.0
+                    ],
+                    [
+                        383.0,
+                        487.0
+                    ],
+                    [
+                        383.0,
+                        505.0
+                    ],
+                    [
+                        349.0,
+                        505.0
+                    ]
+                ],
+                [
+                    [
+                        452.0,
+                        485.0
+                    ],
+                    [
+                        482.0,
+                        485.0
+                    ],
+                    [
+                        482.0,
+                        506.0
+                    ],
+                    [
+                        452.0,
+                        506.0
+                    ]
+                ],
+                [
+                    [
+                        637.0,
+                        485.0
+                    ],
+                    [
+                        675.0,
+                        485.0
+                    ],
+                    [
+                        675.0,
+                        505.0
+                    ],
+                    [
+                        637.0,
+                        505.0
+                    ]
+                ],
+                [
+                    [
+                        350.0,
+                        503.0
+                    ],
+                    [
+                        562.0,
+                        503.0
+                    ],
+                    [
+                        562.0,
+                        527.0
+                    ],
+                    [
+                        350.0,
+                        527.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        525.0
+                    ],
+                    [
+                        390.0,
+                        525.0
+                    ],
+                    [
+                        390.0,
+                        545.0
+                    ],
+                    [
+                        349.0,
+                        545.0
+                    ]
+                ],
+                [
+                    [
+                        635.0,
+                        525.0
+                    ],
+                    [
+                        674.0,
+                        525.0
+                    ],
+                    [
+                        674.0,
+                        546.0
+                    ],
+                    [
+                        635.0,
+                        546.0
+                    ]
+                ],
+                [
+                    [
+                        350.0,
+                        549.0
+                    ],
+                    [
+                        527.0,
+                        549.0
+                    ],
+                    [
+                        527.0,
+                        576.0
+                    ],
+                    [
+                        350.0,
+                        576.0
+                    ]
+                ],
+                [
+                    [
+                        351.0,
+                        572.0
+                    ],
+                    [
+                        391.0,
+                        572.0
+                    ],
+                    [
+                        391.0,
+                        593.0
+                    ],
+                    [
+                        351.0,
+                        593.0
+                    ]
+                ],
+                [
+                    [
+                        635.0,
+                        572.0
+                    ],
+                    [
+                        675.0,
+                        572.0
+                    ],
+                    [
+                        675.0,
+                        591.0
+                    ],
+                    [
+                        635.0,
+                        591.0
+                    ]
+                ],
+                [
+                    [
+                        551.0,
+                        600.0
+                    ],
+                    [
+                        675.0,
+                        600.0
+                    ],
+                    [
+                        675.0,
+                        624.0
+                    ],
+                    [
+                        551.0,
+                        624.0
+                    ]
+                ],
+                [
+                    [
+                        564.0,
+                        621.0
+                    ],
+                    [
+                        674.0,
+                        621.0
+                    ],
+                    [
+                        674.0,
+                        642.0
+                    ],
+                    [
+                        564.0,
+                        642.0
+                    ]
+                ],
+                [
+                    [
+                        573.0,
+                        639.0
+                    ],
+                    [
+                        674.0,
+                        639.0
+                    ],
+                    [
+                        674.0,
+                        659.0
+                    ],
+                    [
+                        573.0,
+                        659.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        661.0
+                    ],
+                    [
+                        444.0,
+                        661.0
+                    ],
+                    [
+                        444.0,
+                        688.0
+                    ],
+                    [
+                        349.0,
+                        688.0
+                    ]
+                ],
+                [
+                    [
+                        621.0,
+                        663.0
+                    ],
+                    [
+                        674.0,
+                        663.0
+                    ],
+                    [
+                        674.0,
+                        683.0
+                    ],
+                    [
+                        621.0,
+                        683.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        684.0
+                    ],
+                    [
+                        395.0,
+                        684.0
+                    ],
+                    [
+                        395.0,
+                        703.0
+                    ],
+                    [
+                        349.0,
+                        703.0
+                    ]
+                ],
+                [
+                    [
+                        633.0,
+                        685.0
+                    ],
+                    [
+                        671.0,
+                        685.0
+                    ],
+                    [
+                        671.0,
+                        703.0
+                    ],
+                    [
+                        633.0,
+                        703.0
+                    ]
+                ],
+                [
+                    [
+                        347.0,
+                        699.0
+                    ],
+                    [
+                        405.0,
+                        699.0
+                    ],
+                    [
+                        405.0,
+                        725.0
+                    ],
+                    [
+                        347.0,
+                        725.0
+                    ]
+                ],
+                [
+                    [
+                        633.0,
+                        701.0
+                    ],
+                    [
+                        674.0,
+                        701.0
+                    ],
+                    [
+                        674.0,
+                        722.0
+                    ],
+                    [
+                        633.0,
+                        722.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        745.0
+                    ],
+                    [
+                        428.0,
+                        745.0
+                    ],
+                    [
+                        428.0,
+                        765.0
+                    ],
+                    [
+                        349.0,
+                        765.0
+                    ]
+                ],
+                [
+                    [
+                        511.0,
+                        745.0
+                    ],
+                    [
+                        569.0,
+                        745.0
+                    ],
+                    [
+                        569.0,
+                        764.0
+                    ],
+                    [
+                        511.0,
+                        764.0
+                    ]
+                ],
+                [
+                    [
+                        635.0,
+                        745.0
+                    ],
+                    [
+                        674.0,
+                        745.0
+                    ],
+                    [
+                        674.0,
+                        766.0
+                    ],
+                    [
+                        635.0,
+                        766.0
+                    ]
+                ],
+                [
+                    [
+                        349.0,
+                        765.0
+                    ],
+                    [
+                        433.0,
+                        765.0
+                    ],
+                    [
+                        433.0,
+                        785.0
+                    ],
+                    [
+                        349.0,
+                        785.0
+                    ]
+                ],
+                [
+                    [
+                        540.0,
+                        767.0
+                    ],
+                    [
+                        569.0,
+                        767.0
+                    ],
+                    [
+                        569.0,
+                        783.0
+                    ],
+                    [
+                        540.0,
+                        783.0
+                    ]
+                ],
+                [
+                    [
+                        645.0,
+                        767.0
+                    ],
+                    [
+                        673.0,
+                        767.0
+                    ],
+                    [
+                        673.0,
+                        783.0
+                    ],
+                    [
+                        645.0,
+                        783.0
+                    ]
+                ],
+                [
+                    [
+                        428.0,
+                        791.0
+                    ],
+                    [
+                        587.0,
+                        791.0
+                    ],
+                    [
+                        587.0,
+                        811.0
+                    ],
+                    [
+                        428.0,
+                        811.0
+                    ]
+                ],
+                [
+                    [
+                        404.0,
+                        808.0
+                    ],
+                    [
+                        616.0,
+                        808.0
+                    ],
+                    [
+                        616.0,
+                        832.0
+                    ],
+                    [
+                        404.0,
+                        832.0
+                    ]
+                ],
+                [
+                    [
+                        436.0,
+                        828.0
+                    ],
+                    [
+                        582.0,
+                        828.0
+                    ],
+                    [
+                        582.0,
+                        849.0
+                    ],
+                    [
+                        436.0,
+                        849.0
+                    ]
+                ],
+                [
+                    [
+                        430.0,
+                        842.0
+                    ],
+                    [
+                        589.0,
+                        842.0
+                    ],
+                    [
+                        589.0,
+                        869.0
+                    ],
+                    [
+                        430.0,
+                        869.0
+                    ]
+                ],
+                [
+                    [
+                        411.0,
+                        860.0
+                    ],
+                    [
+                        606.0,
+                        860.0
+                    ],
+                    [
+                        606.0,
+                        885.0
+                    ],
+                    [
+                        411.0,
+                        885.0
+                    ]
+                ],
+                [
+                    [
+                        423.0,
+                        881.0
+                    ],
+                    [
+                        595.0,
+                        881.0
+                    ],
+                    [
+                        595.0,
+                        902.0
+                    ],
+                    [
+                        423.0,
+                        902.0
+                    ]
+                ]
+            ],
+            "word_confidences": [
+                0.36181287038806625,
+                0.5607282528123219,
+                0.8012175599423212,
+                0.9693451052511944,
+                0.7531746499030351,
+                0.2487765694791087,
+                0.9205703765578132,
+                0.9314388224155643,
+                0.5258007111329793,
+                0.7238736103125838,
+                0.9786049312714226,
+                0.18626374375717447,
+                0.4115634991635399,
+                0.40404323353816807,
+                0.10646515113708775,
+                0.5796696218515239,
+                0.2997065405520414,
+                0.7060970524326059,
+                0.3250615579906807,
+                0.20410602474771747,
+                0.4614680211625358,
+                0.988494316901692,
+                0.6482678055763245,
+                0.6624149788673479,
+                0.8650571685220618,
+                0.2377593073006586,
+                0.1847906103450752,
+                0.31584699720533904,
+                0.22020477407098862,
+                0.17590976462746546,
+                0.8199798464775085,
+                0.23355055417815035,
+                0.2356461905108482,
+                0.9134290191104488,
+                0.5045597737261706,
+                0.5017469716368141,
+                0.39029448573733655,
+                0.3434135877694502
+            ],
+            "ocr_confidence": 51.85,
+            "line_count": 38
+        },
+        "receipt": {
+            "merchant": "UNIHAKKA INTERNATIONAL SDN BHD",
+            "date": "28 Mar 2018",
+            "invoice_number": "A031x8",
+            "subtotal": null,
+            "tax": 4.0,
+            "total": 20.0,
+            "currency": "USD",
+            "phone": "18032802170324",
+            "address": "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+            "field_confidence": 88.89
+        },
+        "validation": {
+            "status": "PASS",
+            "validation_status": "PASS",
+            "merchant_found": true,
+            "invoice_found": true,
+            "date_found": true,
+            "date_valid": true,
+            "total_found": true,
+            "amount_valid": true,
+            "tax_consistent": true,
+            "duplicate_fields": [],
+            "missing_fields": [],
+            "warnings": [],
+            "issues": []
+        },
+        "integrity": {
+            "ocr_score": 51.85,
+            "metadata_score": 100.0,
+            "field_completeness_score": 88.89,
+            "logical_consistency_score": 100.0,
+            "integrity_score": 83.33,
+            "risk_score": 16.67,
+            "risk_level": "Medium",
+            "status": "Suspicious"
+        }
+    },
+    "ocr_time_ms": 47374.54,
+    "subtotal": null,
+    "tax": 4.0,
+    "currency": "USD",
+    "phone": "18032802170324",
+    "address": "12 Jalan Tampoi 7/4,Kawasan Parinduasttlan:",
+    "pdf_error": null,
+    "report": {
+        "id": "module2_20260806_174629_1742ac49",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260806_174629_1742ac49.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module2_20260806_174629_1742ac49.pdf",
+        "created": "2026-08-06 17:46:29",
+        "downloadable": true
+    }
+}

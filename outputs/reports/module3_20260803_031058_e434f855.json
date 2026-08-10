@@ -1,0 +1,62 @@
+{
+    "success": true,
+    "project_name": "Unified AI Framework for Digital Fraud Detection",
+    "backend_version": "1.0",
+    "phase": "Phase 3.5",
+    "report_version": "v1",
+    "module": "Module 3 - Image Tampering Detection",
+    "prediction": "Tampered",
+    "confidence": 90.36,
+    "confidence_label": "High",
+    "risk_level": "High",
+    "risk_score": 90.36,
+    "status": "Completed",
+    "decision_summary": {
+        "title": "High Risk Image Tampering",
+        "prediction": "Tampered",
+        "confidence": "90.36%",
+        "risk": "High",
+        "summary": [
+            "Model predicted the image as Tampered.",
+            "Confidence is 90.36% (High).",
+            "Risk level is High.",
+            "Suspicious manipulation patterns were strongly detected.",
+            "Grad-CAM highlights the regions that influenced the prediction."
+        ]
+    },
+    "model": {
+        "name": "efficientnet",
+        "version": "v1.0",
+        "dataset": "CASIA v2 + IMD2020",
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1_score": null
+    },
+    "processing": {
+        "time_ms": 146.01,
+        "device": "cuda",
+        "timestamp": "2026-08-03 03:10:58",
+        "image_path": "outputs\\temp\\test_module3.jpg"
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 03:10:58.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 03:10:58.png",
+        "error": null
+    },
+    "report": {
+        "id": "module3_20260803_031058_e434f855",
+        "json": null,
+        "pdf": null,
+        "created": "2026-08-03 03:10:58",
+        "downloadable": false
+    },
+    "probabilities": {
+        "Authentic": 9.64,
+        "Tampered": 90.36
+    },
+    "uploaded_image": "outputs\\temp\\test_module3.jpg",
+    "image_path": "outputs\\temp\\test_module3.jpg",
+    "model_load_mode": "strict=True"
+}

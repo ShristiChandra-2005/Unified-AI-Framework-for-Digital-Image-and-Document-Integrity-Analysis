@@ -1,0 +1,62 @@
+{
+    "success": true,
+    "project_name": "Unified AI Framework for Digital Fraud Detection",
+    "backend_version": "1.0",
+    "phase": "Phase 3.5",
+    "report_version": "v1",
+    "module": "Module 3 - Image Tampering Detection",
+    "prediction": "Authentic",
+    "confidence": 64.29,
+    "confidence_label": "Low",
+    "risk_level": "Low",
+    "risk_score": 35.71,
+    "status": "Completed",
+    "decision_summary": {
+        "title": "Low Risk Image Tampering",
+        "prediction": "Authentic",
+        "confidence": "64.29%",
+        "risk": "Low",
+        "summary": [
+            "Model predicted the image as Authentic.",
+            "Confidence is 64.29% (Low).",
+            "Risk level is Low.",
+            "The image appears mostly authentic based on current model output.",
+            "Grad-CAM highlights the regions that influenced the prediction."
+        ]
+    },
+    "model": {
+        "name": "efficientnet",
+        "version": "v1.0",
+        "dataset": "CASIA v2 + IMD2020",
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1_score": null
+    },
+    "processing": {
+        "time_ms": 228.49,
+        "device": "cuda",
+        "timestamp": "2026-08-03 15:47:06",
+        "image_path": "outputs\\temp\\c8uefj0_0.jpg"
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_c8uefj0_0_2026-08-03 15:47:06.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_c8uefj0_0_2026-08-03 15:47:06.png",
+        "error": null
+    },
+    "report": {
+        "id": "module3_20260803_154706_e7374ed3",
+        "json": null,
+        "pdf": null,
+        "created": "2026-08-03 15:47:06",
+        "downloadable": false
+    },
+    "probabilities": {
+        "Authentic": 64.29,
+        "Tampered": 35.71
+    },
+    "uploaded_image": "outputs\\temp\\c8uefj0_0.jpg",
+    "image_path": "outputs\\temp\\c8uefj0_0.jpg",
+    "model_load_mode": "strict=True"
+}

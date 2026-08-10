@@ -1,0 +1,79 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI - Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "phase": "Phase 3",
+    "report_version": "v1",
+    "module": "Module 3 - Image Tampering Detection",
+    "prediction": "Tampered",
+    "confidence": 90.36,
+    "confidence_label": "High",
+    "risk_level": "High",
+    "risk_score": 90.36,
+    "status": "Completed",
+    "processing_time": 165.75,
+    "processing_time_ms": 165.75,
+    "timestamp": "2026-08-03 16:25:00",
+    "device": "cuda",
+    "report_id": "module3_20260803_162500_72ac0d06",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260803_162500_72ac0d06.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\downloads\\module3_20260803_162500_72ac0d06.pdf",
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 16:25:00.png",
+    "visualization_error": null,
+    "model": {
+        "name": "efficientnet",
+        "version": "N/A",
+        "dataset": "CASIA v2 + IMD2020",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "dataset": "CASIA v2 + IMD2020",
+    "metrics": {
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "decision_summary": {
+        "title": "High Risk Image Tampering Decision",
+        "prediction": "Tampered",
+        "confidence": "90.36%",
+        "risk": "High",
+        "summary": [
+            "The uploaded image has been classified as Tampered.",
+            "The model confidence is 90.36% (High).",
+            "Localized manipulation indicators were strongly detected by the model.",
+            "Grad-CAM highlights the regions that influenced the tampering decision.",
+            "Overall Risk Level: High."
+        ]
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 16:25:00.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 16:25:00.png",
+        "error": null
+    },
+    "processing": {
+        "time_ms": 165.75,
+        "device": "cuda",
+        "timestamp": "2026-08-03 16:25:00",
+        "image_path": "outputs\\temp\\test_module3.jpg"
+    },
+    "probabilities": {
+        "Authentic": 9.64,
+        "Tampered": 90.36
+    },
+    "uploaded_image": "outputs\\temp\\test_module3.jpg",
+    "image_path": "outputs\\temp\\test_module3.jpg",
+    "model_load_mode": "strict=True",
+    "details": {},
+    "report": {
+        "id": "module3_20260803_162500_72ac0d06",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260803_162500_72ac0d06.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\downloads\\module3_20260803_162500_72ac0d06.pdf",
+        "created": "2026-08-03 16:25:00",
+        "downloadable": true
+    }
+}

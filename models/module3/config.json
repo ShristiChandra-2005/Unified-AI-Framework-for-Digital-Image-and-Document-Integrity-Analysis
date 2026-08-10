@@ -1,0 +1,37 @@
+{
+    "project_title": "Unified AI Framework for Digital Image and Document Integrity Analysis using Deep Learning, OCR, and Explainable AI",
+    "module_title": "Module 3 - Digital Image Tampering Detection",
+    "dataset_root": "E:\\Intership_project\\dataset\\Module 3_Image Tampering Detection",
+    "casia_root": "E:\\Intership_project\\dataset\\Module 3_Image Tampering Detection\\CASIA v2\\CASIA2",
+    "imd_root": "E:\\Intership_project\\dataset\\Module 3_Image Tampering Detection\\IMD2020",
+    "output_root": "E:\\Intership_project\\outputs\\module_3_image_tampering_detection",
+    "models_root": "E:\\Intership_project\\models\\module_3_image_tampering_detection",
+    "run_mode": "final",
+    "image_size": 224,
+    "batch_size": 8,
+    "epochs": 12,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "patience": 4,
+    "num_workers": 0,
+    "seed": 42,
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15,
+    "gradient_clip": 1.0,
+    "image_extensions": [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".bmp",
+        ".tif",
+        ".tiff"
+    ],
+    "mask_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".bmp",
+        ".tif",
+        ".tiff"
+    ]
+}

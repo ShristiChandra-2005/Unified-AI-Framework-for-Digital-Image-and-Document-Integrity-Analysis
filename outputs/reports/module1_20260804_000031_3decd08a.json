@@ -1,0 +1,82 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI - Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "phase": "Phase 3",
+    "report_version": "v1",
+    "module": "Module 1 - AI Generated Image Detection",
+    "prediction": "REAL",
+    "confidence": 97.31,
+    "confidence_label": "Very High",
+    "risk_level": "Low",
+    "risk_score": 2.69,
+    "status": "Completed",
+    "processing_time": 271.41,
+    "processing_time_ms": 271.41,
+    "timestamp": "2026-08-04 00:00:31",
+    "device": "cuda",
+    "report_id": "module1_20260804_000031_3decd08a",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260804_000031_3decd08a.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260804_000031_3decd08a.pdf",
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_Shristi_Chandra_2026-08-04 00:00:31.png",
+    "visualization_error": "N/A",
+    "model": {
+        "name": "efficientnet",
+        "version": "N/A",
+        "dataset": "CIFAKE",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "dataset": "CIFAKE",
+    "metrics": {
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "decision_summary": {
+        "title": "Low Risk AI Image Decision",
+        "prediction": "REAL",
+        "confidence": "97.31%",
+        "risk": "Low",
+        "summary": [
+            "The uploaded image has been classified as REAL.",
+            "The model confidence is 97.31% (Very High).",
+            "The image appears less suspicious according to the current model output.",
+            "Grad-CAM visualization supports the prediction by highlighting influential image regions.",
+            "Overall Risk Level: Low."
+        ]
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_Shristi_Chandra_2026-08-04 00:00:31.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_Shristi_Chandra_2026-08-04 00:00:31.png",
+        "error": null
+    },
+    "processing": {
+        "time_ms": 271.41,
+        "device": "cuda",
+        "timestamp": "2026-08-04 00:00:31",
+        "image_path": "outputs\\temp\\Shristi_Chandra.jpg"
+    },
+    "probabilities": {
+        "FAKE": 2.69,
+        "REAL": 97.31
+    },
+    "uploaded_image": "outputs\\temp\\Shristi_Chandra.jpg",
+    "image_path": "outputs\\temp\\Shristi_Chandra.jpg",
+    "model_load_mode": "strict=True",
+    "validation": {},
+    "integrity": {},
+    "details": {},
+    "pdf_error": null,
+    "report": {
+        "id": "module1_20260804_000031_3decd08a",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260804_000031_3decd08a.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260804_000031_3decd08a.pdf",
+        "created": "2026-08-04 00:00:31",
+        "downloadable": true
+    }
+}

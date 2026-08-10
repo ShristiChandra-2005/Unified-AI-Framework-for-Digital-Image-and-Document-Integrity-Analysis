@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "project_name": "Unified AI Framework for Digital Fraud Detection",
+    "backend_version": "1.0",
+    "phase": "Phase 3",
+    "report_version": "v1",
+    "report_id": "module3_20260803_025156_c26da8c9",
+    "module": "Module 3 - Image Tampering Detection",
+    "model_name": "efficientnet",
+    "model_version": "v1.0",
+    "dataset": "Unknown",
+    "prediction": "Tampered",
+    "confidence": 90.36,
+    "confidence_label": "High",
+    "risk_level": "High",
+    "risk_score": 90.36,
+    "status": "Completed",
+    "processing_time_ms": 149.69,
+    "device": "cuda",
+    "timestamp": "2026-08-03 02:51:56",
+    "uploaded_image": "outputs\\temp\\test_module3.jpg",
+    "image_path": "outputs\\temp\\test_module3.jpg",
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 02:51:56.png",
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_2026-08-03 02:51:56.png",
+    "visualization_error": null,
+    "decision_summary": {
+        "title": "High Risk Tampering Decision",
+        "summary": [
+            "Model predicted the image as Tampered.",
+            "Prediction confidence is 90.36%.",
+            "Confidence label is High.",
+            "Estimated risk level is High.",
+            "The model detected strong localized tampering indicators.",
+            "Grad-CAM highlights the regions that influenced the prediction."
+        ]
+    },
+    "probabilities": {
+        "Authentic": 9.64,
+        "Tampered": 90.36
+    },
+    "model_load_mode": "strict=True",
+    "metrics": {
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1_score": null
+    },
+    "pdf_report_path": null
+}

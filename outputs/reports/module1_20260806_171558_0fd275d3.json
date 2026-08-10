@@ -1,0 +1,68 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI",
+    "project_subtitle": "Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "report_version": "v1",
+    "module": "Module 1 - AI Generated Image Detection",
+    "prediction": "FAKE",
+    "confidence": 100.0,
+    "confidence_label": "Very High",
+    "risk_level": "High",
+    "risk_score": 100.0,
+    "status": "Completed",
+    "processing_time": 365.1,
+    "processing_time_ms": 365.1,
+    "timestamp": "2026-08-06 17:15:58",
+    "device": "cuda",
+    "report_id": "module1_20260806_171558_0fd275d3",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171558_0fd275d3.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171558_0fd275d3.pdf",
+    "decision_summary": {
+        "title": "High Risk AI Image Decision",
+        "prediction": "FAKE",
+        "confidence": "100.00%",
+        "risk": "High",
+        "summary": [
+            "The uploaded image has been classified as FAKE.",
+            "The model confidence is 100.00% (Very High).",
+            "Synthetic visual artifacts or AI-generated patterns were strongly detected.",
+            "Grad-CAM visualization supports the prediction by highlighting influential image regions.",
+            "Overall risk level: High."
+        ]
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0_20260806_171558.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0_20260806_171558.png",
+        "error": "N/A"
+    },
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0_20260806_171558.png",
+    "visualization_error": "N/A",
+    "probabilities": {
+        "FAKE": 100.0,
+        "REAL": 0.0
+    },
+    "uploaded_image": "outputs\\temp\\WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0.jpeg",
+    "image_path": "outputs\\temp\\WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0.jpeg",
+    "model": {
+        "name": "efficientnet",
+        "version": "N/A",
+        "dataset": "CIFAKE",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "model_load_mode": "strict=True",
+    "details": {},
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module1_gradcam_WhatsApp_Image_2026-08-06_at_13.27.22_4141d9a0_20260806_171558.png",
+    "pdf_error": null,
+    "report": {
+        "id": "module1_20260806_171558_0fd275d3",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171558_0fd275d3.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module1_20260806_171558_0fd275d3.pdf",
+        "created": "2026-08-06 17:15:58",
+        "downloadable": true
+    }
+}

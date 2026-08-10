@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "module": "Module 3 - Image Tampering Detection",
+    "model_name": "efficientnet",
+    "model_load_mode": "strict=True",
+    "image_path": "outputs\\temp\\test_module3.jpg",
+    "prediction": "Tampered",
+    "confidence": 90.36,
+    "inference_time_ms": 15.23,
+    "probabilities": {
+        "Authentic": 9.64,
+        "Tampered": 90.36
+    },
+    "gradcam_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_gradcam_test_module3_20260803_021655.png"
+}
