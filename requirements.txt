@@ -1,5 +1,6 @@
-torch
-torchvision
+streamlit==1.61.1
+torch==2.8.0
+torchvision==0.23.0
 timm
 easyocr==1.7.2
 opencv-python-headless
@@ -7,7 +8,6 @@ numpy
 pandas
 matplotlib
 Pillow
-streamlit
 scikit-learn
 joblib
 plotly
