@@ -3,7 +3,7 @@ from typing import Any
 
 def clean_metric(value: Any) -> str:
     """
-    Normalize any report value into one consistent, display-safe type.
+    Normalize any report value into one consistent, display-safe string.
 
     This used to return `value` unchanged when it wasn't None, so a real
     number (45.99) and a missing value ("N/A") ended up as different
@@ -15,8 +15,12 @@ def clean_metric(value: Any) -> str:
     Now every non-empty value is always turned into a string, so a
     column is never a mix of types again.
     """
-    if value is None or value == "":
+    if value is None:
         return "N/A"
+
+    if isinstance(value, str):
+        value = value.strip()
+        return value if value else "N/A"
 
     if isinstance(value, bool):
         return "Yes" if value else "No"
