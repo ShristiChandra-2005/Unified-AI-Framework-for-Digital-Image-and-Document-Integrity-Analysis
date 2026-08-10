@@ -1,276 +1,220 @@
-# 🛡️ Unified AI Framework for Digital Image and Document Integrity Analysis
+# 🛡️ VeriShield AI
+## Unified AI Framework for Digital Image and Document Integrity Analysis
 
-An end-to-end AI framework that verifies the authenticity and integrity of digital images and documents using Deep Learning, OCR, metadata analysis, and Explainable AI.
+VeriShield AI is an end-to-end AI-powered framework for analyzing the
+authenticity and integrity of digital images and documents using Deep
+Learning, Computer Vision, OCR, metadata analysis, and Explainable AI.
 
-This project integrates multiple AI techniques into a single platform capable of detecting AI-generated images, identifying digitally manipulated images, verifying receipt authenticity, and producing an interpretable integrity assessment report.
+The framework combines multiple AI-based analysis modules into a unified
+Streamlit application for detecting AI-generated images, identifying image
+tampering, verifying digital receipts, and generating interpretable
+integrity assessment reports.
 
 ---
 
-# 🚀 Project Overview
+## 🚀 Project Overview
 
-The rapid growth of Generative AI and image editing tools has made it increasingly difficult to determine whether digital content is authentic.
+The rapid growth of Generative AI and digital image-editing tools has made
+it increasingly difficult to determine whether digital content is
+authentic or manipulated.
 
-Most existing solutions focus on only one task, such as:
+Existing solutions often focus on a single type of digital content.
+VeriShield AI provides a unified framework that combines multiple
+analysis techniques to assess digital integrity.
+
+The system currently supports:
 
 - AI-generated image detection
-- Receipt OCR
-- Image tampering detection
-
-This project combines these capabilities into a unified AI framework that automatically selects the appropriate analysis pipeline based on the uploaded content and provides a comprehensive integrity assessment.
-
----
-
-# ✨ Features
-
-- 🤖 AI-Generated Image Detection
-- 🖼️ Digital Image Tampering Detection
-- 🧾 Receipt Verification using OCR
-- 📊 Metadata Analysis
-- 🔍 Explainable AI using Grad-CAM
-- 📄 Automatic PDF Report Generation
-- 🎯 Integrity & Confidence Assessment
-- 🌐 Interactive Streamlit Dashboard
+- Image-tampering detection
+- OCR-based receipt verification
+- Metadata analysis
+- Grad-CAM explainability
+- Confidence-based prediction
+- Risk assessment
+- Automated JSON/PDF integrity reporting
+- Interactive Streamlit-based analysis
 
 ---
 
-# 🏗️ System Architecture
+## 🎯 Objectives
 
-```
-                 User
-                   │
-                   ▼
-          Streamlit Dashboard
-                   │
-        ┌──────────┼──────────┐
-        ▼          ▼          ▼
- AI Image      Receipt     Image
- Detection    Verification Tampering
-        │          │          │
- EfficientNet  EasyOCR   EfficientNet
-        │          │          │
-        └──────────┼──────────┘
-                   ▼
-        Explainability Engine
-                   ▼
-    Integrity Assessment Engine
-                   ▼
-      PDF Analysis Report
-```
+The main objectives of VeriShield AI are to:
+
+- Detect AI-generated and synthetic images.
+- Identify digitally manipulated or tampered images.
+- Extract and analyze information from digital receipts.
+- Validate available image and document metadata.
+- Provide explainable visual evidence for model predictions.
+- Combine model outputs into an interpretable integrity assessment.
+- Provide an easy-to-use interface for digital content analysis.
 
 ---
 
-# 📦 Project Modules
+# 🔍 Core Modules
 
-## 1. AI Image Detection
+## 1. AI-Generated Image Detection
 
-Detects whether an uploaded image is:
-
-- Real
-- AI Generated
-
-### Model
-
-- EfficientNet-B0
+This module classifies an uploaded image as either real or
+AI-generated.
 
 ### Dataset
 
-- CIFAKE
+**CIFAKE**
 
-### Output
+### Models Evaluated
 
-- Prediction
-- Confidence Score
-- Grad-CAM Visualization
-
----
-
-## 2. Receipt Verification
-
-Extracts and verifies information from receipts using OCR.
-
-### Model
-
-- EasyOCR
-
-### Datasets
-
-- SROIE
-- CORD
-
-### Output
-
-- Extracted Text
-- Merchant Name
-- Date
-- Amount
-- OCR Confidence
-- Metadata Analysis
-- Integrity Assessment
-
----
-
-## 3. Digital Image Tampering Detection
-
-Detects manipulated or edited images.
-
-### Model
-
+- CNN
+- Xception
 - EfficientNet-B0
+
+### Best Experimental Result
+
+- **Test Accuracy:** 98%
+- **F1-Score:** 0.98
+- **Best Model:** Xception
+
+The module provides the predicted class and confidence score through the
+Streamlit interface.
+
+---
+
+## 2. Image-Tampering Detection
+
+This module analyzes images for signs of digital manipulation or tampering.
 
 ### Datasets
 
 - CASIA v2
 - IMD2020
 
-### Output
+### Model
 
-- Original / Tampered
-- Confidence Score
-- Grad-CAM Visualization
+**EfficientNet-B0**
 
----
+### Experimental Result
 
-## 4. Explainability Engine
+- **Accuracy:** 83.47%
+- **F1-Score:** 81.42%
 
-Provides transparent explanations for AI predictions.
-
-### Uses
-
-- Grad-CAM for image models
-- OCR output interpretation
-- Metadata validation
+The module provides a tampering prediction together with supporting
+analysis and visual evidence.
 
 ---
 
-## 5. Integrity Assessment Engine
+## 3. Receipt Verification
 
-Combines outputs from all modules to generate a final integrity assessment.
+The receipt verification module analyzes digital receipts using OCR and
+document-processing techniques.
 
-### Output
+### Datasets
 
-- Integrity Score
-- Confidence Score
-- Final Assessment
-- Explainable Report
+- SROIE
+- CORD
 
----
+### Capabilities
 
-# 🔄 Workflow
+- OCR-based text extraction
+- Receipt field analysis
+- Document preprocessing
+- Metadata analysis
+- Integrity checks
+- Risk assessment
 
-```
-User Uploads Image / Receipt
-            │
-            ▼
-System Identifies Content Type
-            │
-            ▼
-Run AI Model / OCR Pipeline
-            │
-            ▼
-Generate Prediction
-            │
-            ▼
-Explain Prediction
-            │
-            ▼
-Integrity Assessment
-            │
-            ▼
-Generate PDF Report
-```
+The extracted information can be used to identify inconsistencies and
+support receipt authenticity analysis.
 
 ---
 
-# 🛠️ Technology Stack
+## 4. Explainable AI with Grad-CAM
 
-| Category | Technology |
-|----------|------------|
-| Programming Language | Python |
-| Deep Learning | PyTorch |
-| Computer Vision | OpenCV |
-| OCR | EasyOCR |
-| Data Processing | Pandas, NumPy |
-| Visualization | Matplotlib |
-| Explainability | Grad-CAM |
-| Dashboard | Streamlit |
-| Development | Jupyter Notebook, VS Code |
-| Report Generation | ReportLab |
+VeriShield AI integrates **Grad-CAM** to make deep-learning predictions
+more interpretable.
+
+Instead of showing only the final prediction, Grad-CAM produces a visual
+representation of the image regions that contributed to the model's
+decision.
+
+This helps users understand the reasoning behind image-classification
+results.
 
 ---
 
-# 📂 Project Structure
+## 5. Metadata Analysis
 
-```
-Unified-AI-Framework/
+The framework analyzes available metadata associated with uploaded files.
 
-│── datasets/
-│── notebooks/
-│── models/
-│── reports/
-│── outputs/
-│── images/
+The analysis may include:
 
-│── ai_image_detection/
-│── receipt_verification/
-│── image_tampering/
-│── explainability/
-│── integrity_engine/
+- Image format
+- Image dimensions
+- EXIF information
+- Camera-related information
+- Creation/modification information
+- Available file properties
 
-│── app.py
-│── requirements.txt
-│── README.md
-│── LICENSE
-```
+Metadata findings are used as additional integrity indicators alongside
+the model prediction.
 
 ---
 
-# 🚀 Installation
+## 6. Risk & Integrity Assessment
 
-```bash
-git clone https://github.com/yourusername/Unified-AI-Framework.git
+The framework combines available analysis results to provide an overall
+digital integrity assessment.
 
-cd Unified-AI-Framework
+The analysis can include:
 
-pip install -r requirements.txt
+- Model prediction
+- Confidence score
+- Metadata findings
+- OCR results
+- Explainability information
+- Integrity indicators
+- Risk assessment
 
-streamlit run app.py
-```
-
----
-
-# 🎯 Expected Outcomes
-
-- Detect AI-generated images
-- Detect digitally manipulated images
-- Verify receipts using OCR
-- Explain AI predictions with Grad-CAM
-- Generate an integrity assessment report
-- Produce downloadable PDF reports
+The objective is to provide users with evidence-based analysis rather
+than relying only on a single prediction.
 
 ---
 
-# 📈 Future Improvements
+# 🏗️ System Architecture
 
-- Support additional document formats
-- Multi-language OCR
-- Real-time API deployment
-- Cloud deployment (AWS/Azure)
-- Mobile application integration
-- Vision Transformer (ViT) models
-- LLM-based document reasoning
-
----
-
-# 👩‍💻 Author
-
-**Shristi Chandra**
-
-B.Tech – Computer Science & Engineering (Artificial Intelligence)
-
-Indira Gandhi Delhi Technical University for Women (IGDTUW)
-
----
-
-# 📜 License
-
-This project is licensed under the MIT License.
+```text
+                         ┌──────────────────────┐
+                         │      User Upload     │
+                         │  Image / Receipt     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    Streamlit App     │
+                         └──────────┬───────────┘
+                                    │
+                 ┌──────────────────┼──────────────────┐
+                 │                  │                  │
+                 ▼                  ▼                  ▼
+        ┌────────────────┐ ┌────────────────┐ ┌────────────────┐
+        │ AI-Generated   │ │ Receipt        │ │ Image          │
+        │ Image          │ │ Verification   │ │ Tampering      │
+        │ Detection      │ │                │ │ Detection      │
+        └───────┬────────┘ └───────┬────────┘ └───────┬────────┘
+                │                  │                  │
+                ▼                  ▼                  ▼
+        Deep Learning          OCR / NLP        Deep Learning
+        CNN / Xception         SROIE / CORD     EfficientNet-B0
+        EfficientNet-B0
+                │                  │                  │
+                └──────────────────┼──────────────────┘
+                                   │
+                                   ▼
+                        ┌──────────────────────┐
+                        │ Metadata Analysis    │
+                        │ + Grad-CAM           │
+                        │ + Risk Assessment    │
+                        └──────────┬───────────┘
+                                   │
+                                   ▼
+                        ┌──────────────────────┐
+                        │ Integrity Assessment │
+                        │ & Evidence Report    │
+                        └──────────────────────┘
