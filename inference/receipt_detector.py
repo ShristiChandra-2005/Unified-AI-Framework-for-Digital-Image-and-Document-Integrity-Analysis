@@ -7,7 +7,7 @@ from inference.integrity_scorer import calculate_integrity_score
 from inference.metadata_validator import validate_receipt_fields
 from inference.ocr_engine import OCREngine
 from utils.file_utils import create_report_id, validate_image_path
-from utils.helper import generate_receipt_summary
+from utils.helper import clean_metric, generate_receipt_summary
 from utils.logger import get_logger, log_prediction
 from utils.report_builder import (
     build_error_report,
@@ -94,33 +94,20 @@ class ReceiptVerifier:
                 report_id=report_id,
             )
 
-            # Stable top-level keys for test_backend.py and Streamlit UI.
+            # build_receipt_report() already sets prediction / receipt_status /
+            # confidence / risk_level / risk_score / status / validation_status /
+            # merchant / invoice_number / invoice_date / total_amount /
+            # integrity_score through clean_metric(). Do NOT re-set them here
+            # with raw values - that reintroduces the mixed float/"N/A" types
+            # that crashed the Streamlit table. Only the fields it doesn't
+            # already cover are added below, and always through clean_metric().
             report["module"] = MODULE_NAME
-            report["prediction"] = integrity.get("status", "N/A")
-            report["receipt_status"] = integrity.get("status", "N/A")
-            report["confidence"] = integrity.get("integrity_score", "N/A")
-            report["risk_level"] = integrity.get("risk_level", "N/A")
-            report["risk_score"] = integrity.get("risk_score", "N/A")
-            report["status"] = validation.get("status", "N/A")
-            report["validation_status"] = validation.get(
-                "validation_status",
-                validation.get("status", "N/A"),
-            )
-
-            report["processing_time"] = processing_time_ms
-            report["processing_time_ms"] = processing_time_ms
-            report["ocr_time_ms"] = ocr_time_ms
-
-            report["merchant"] = receipt_fields.get("merchant", "N/A")
-            report["invoice_number"] = receipt_fields.get("invoice_number", "N/A")
-            report["invoice_date"] = receipt_fields.get("date", "N/A")
-            report["subtotal"] = receipt_fields.get("subtotal", "N/A")
-            report["tax"] = receipt_fields.get("tax", "N/A")
-            report["total_amount"] = receipt_fields.get("total", "N/A")
-            report["currency"] = receipt_fields.get("currency", "N/A")
-            report["phone"] = receipt_fields.get("phone", "N/A")
-            report["address"] = receipt_fields.get("address", "N/A")
-            report["integrity_score"] = integrity.get("integrity_score", "N/A")
+            report["subtotal"] = clean_metric(receipt_fields.get("subtotal"))
+            report["tax"] = clean_metric(receipt_fields.get("tax"))
+            report["currency"] = clean_metric(receipt_fields.get("currency"))
+            report["phone"] = clean_metric(receipt_fields.get("phone"))
+            report["address"] = clean_metric(receipt_fields.get("address"))
+            report["ocr_time_ms"] = clean_metric(ocr_time_ms)
 
             # Module 2 must not expose model/Grad-CAM/probability fields.
             report.pop("model", None)

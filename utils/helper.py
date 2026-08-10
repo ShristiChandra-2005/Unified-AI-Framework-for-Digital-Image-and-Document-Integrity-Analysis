@@ -1,11 +1,31 @@
 from typing import Any
 
 
-def clean_metric(value: Any) -> Any:
+def clean_metric(value: Any) -> str:
+    """
+    Normalize any report value into one consistent, display-safe type.
+
+    This used to return `value` unchanged when it wasn't None, so a real
+    number (45.99) and a missing value ("N/A") ended up as different
+    Python types in the same report field. When that report field is
+    later put into a Streamlit table or PDF table, mixing float and str
+    in one column is exactly what crashes Arrow with:
+    "Expected bytes, got a 'float' object".
+
+    Now every non-empty value is always turned into a string, so a
+    column is never a mix of types again.
+    """
     if value is None or value == "":
         return "N/A"
 
-    return value
+    if isinstance(value, bool):
+        return "Yes" if value else "No"
+
+    if isinstance(value, float):
+        # Avoid floating point noise like 83.33000000000001
+        return f"{value:.2f}"
+
+    return str(value)
 
 
 def confidence_label(confidence: float | int | None) -> str:

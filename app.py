@@ -324,6 +324,38 @@ def page_header(title: str, subtitle: str) -> None:
     )
 
 
+def coalesce(*values: Any, default: Any = "N/A") -> Any:
+    """Return the first value that is genuinely present.
+
+    Plain `a or b or c` treats 0, 0.0, and "" as "missing", which silently
+    drops real values like a $0 tax field. This only falls through on
+    None or an empty string, so a legitimate 0 is kept.
+    """
+    for value in values:
+        if value is not None and value != "":
+            return value
+    return default
+
+
+def format_percent(value: Any) -> str:
+    """Format a confidence/risk value as a clean percentage.
+
+    Falls back to plain text when the value isn't numeric (e.g. "N/A"),
+    and clamps numeric values to 0-100 so the UI never shows a broken
+    figure like '142%' or the literal string 'N/A%'.
+    """
+    if value is None:
+        return "N/A"
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return str(value)
+
+    number = max(0.0, min(number, 100.0))
+    return f"{number:.1f}%"
+
+
 def metric_card(label: str, value: Any, caption: str = "") -> None:
     st.markdown(
         f"""
@@ -540,14 +572,14 @@ def render_ai_image_result(result: dict[str, Any]) -> None:
     with col2:
         metric_card(
             "Confidence",
-            f"{result.get('confidence', 'N/A')}%",
+            format_percent(result.get("confidence")),
             result.get("confidence_label", ""),
         )
 
     with col3:
         metric_card(
             "Risk Score",
-            result.get("risk_score", "N/A"),
+            format_percent(result.get("risk_score")),
             result.get("risk_level", ""),
         )
 
@@ -567,11 +599,11 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     validation = result.get("validation", {})
     integrity = result.get("integrity", {})
 
-    integrity_score = (
-        integrity.get("integrity_score")
-        or result.get("integrity_score")
-        or result.get("confidence")
-        or "N/A"
+    integrity_score = coalesce(
+        integrity.get("integrity_score"),
+        result.get("integrity_score"),
+        result.get("confidence"),
+        default=None,
     )
 
     col1, col2, col3 = st.columns(3)
@@ -586,7 +618,7 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     with col2:
         metric_card(
             "Integrity Score",
-            f"{integrity_score}%",
+            format_percent(integrity_score),
             "OCR + metadata validation",
         )
 
@@ -598,6 +630,13 @@ def render_receipt_result(result: dict[str, Any]) -> None:
         )
 
     st.markdown("### Receipt Fields")
+
+    def _field(*sources: Any, default: str = "Not detected") -> str:
+        # Every value is cast to str so this column is never a mix of
+        # numbers and text - that mix is exactly what crashed Module 2
+        # ("Could not convert 'N/A' ... tried to convert to double").
+        return str(coalesce(*sources, default=default))
+
     st.dataframe(
         {
             "Field": [
@@ -612,15 +651,15 @@ def render_receipt_result(result: dict[str, Any]) -> None:
                 "Address",
             ],
             "Value": [
-                receipt.get("merchant") or result.get("merchant") or "Not detected",
-                receipt.get("invoice_number") or result.get("invoice_number") or "Not detected",
-                receipt.get("date") or result.get("invoice_date") or "Not detected",
-                receipt.get("subtotal") or result.get("subtotal") or "N/A",
-                receipt.get("tax") or result.get("tax") or "N/A",
-                receipt.get("total") or result.get("total_amount") or "Not detected",
-                receipt.get("currency") or result.get("currency") or "N/A",
-                receipt.get("phone") or result.get("phone") or "N/A",
-                receipt.get("address") or result.get("address") or "N/A",
+                _field(receipt.get("merchant"), result.get("merchant")),
+                _field(receipt.get("invoice_number"), result.get("invoice_number")),
+                _field(receipt.get("date"), result.get("invoice_date")),
+                _field(receipt.get("subtotal"), result.get("subtotal"), default="N/A"),
+                _field(receipt.get("tax"), result.get("tax"), default="N/A"),
+                _field(receipt.get("total"), result.get("total_amount")),
+                _field(receipt.get("currency"), result.get("currency"), default="N/A"),
+                _field(receipt.get("phone"), result.get("phone"), default="N/A"),
+                _field(receipt.get("address"), result.get("address"), default="N/A"),
             ],
         },
         width="stretch",
@@ -686,14 +725,14 @@ def render_tampering_result(result: dict[str, Any]) -> None:
     with col2:
         metric_card(
             "Confidence",
-            f"{result.get('confidence', 'N/A')}%",
+            format_percent(result.get("confidence")),
             result.get("confidence_label", ""),
         )
 
     with col3:
         metric_card(
             "Risk Score",
-            result.get("risk_score", "N/A"),
+            format_percent(result.get("risk_score")),
             result.get("risk_level", ""),
         )
 
@@ -741,9 +780,9 @@ def _render_processing_table(result: dict[str, Any]) -> None:
         {
             "Property": ["Processing Time", "Device", "Timestamp"],
             "Value": [
-                f"{result.get('processing_time_ms') or processing.get('time_ms', 'N/A')} ms",
-                result.get("device") or processing.get("device", "N/A"),
-                result.get("timestamp") or processing.get("timestamp", "N/A"),
+                f"{coalesce(result.get('processing_time_ms'), processing.get('time_ms'), default='N/A')} ms",
+                str(coalesce(result.get("device"), processing.get("device"))),
+                str(coalesce(result.get("timestamp"), processing.get("timestamp"))),
             ],
         },
         width="stretch",
