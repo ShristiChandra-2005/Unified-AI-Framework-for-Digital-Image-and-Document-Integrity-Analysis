@@ -14,7 +14,6 @@ from app import (
 ADMIN_USERNAME = "admin"
 ADMIN_ROLE = "Administrator"
 
-# Password used to generate this hash: VeriShield@2026
 # Plain password is not stored in this file.
 ADMIN_PASSWORD_HASH = (
     "f12deedb64f2a733d0a2a5293f42c1d33d21b27173ff1a2114e4b4d0b720693a"
