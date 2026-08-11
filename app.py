@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -16,25 +16,15 @@ TEMP_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
+# ============================================================
+# THEME
+# ============================================================
+
 def apply_theme() -> None:
     st.markdown(
         """
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        [data-testid="stSidebarNav"],
-        [data-testid="stSidebarNavItems"],
-        [data-testid="stSidebarNavSeparator"],
-        div[data-testid="stSidebarNav"] {
-            display: none !important;
-            visibility: hidden !important;
-            height: 0 !important;
-            min-height: 0 !important;
-            max-height: 0 !important;
-            overflow: hidden !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
 
         header[data-testid="stHeader"] {
             background: transparent;
@@ -274,25 +264,37 @@ def apply_theme() -> None:
         }
 
         .stButton > button,
-        .stLinkButton > a {
+        .stDownloadButton > button,
+        [data-testid="stPageLink"] a {
             border-radius: 12px !important;
-            background: linear-gradient(135deg, var(--teal), var(--blue)) !important;
-            color: #06121F !important;
-            border: 0 !important;
             font-weight: 800 !important;
             min-height: 2.7rem !important;
             transition: 0.18s ease !important;
-            text-decoration: none !important;
         }
 
-        .stButton > button:hover,
-        .stLinkButton > a:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
+        [data-testid="stPageLink"] a {
+            background: rgba(20,184,166,0.08) !important;
+            border: 1px solid rgba(20,184,166,0.22) !important;
+            color: #F8FAFC !important;
+            text-decoration: none !important;
+            padding: 0.72rem 0.85rem !important;
+            margin: 0.42rem 0 !important;
+        }
+
+        [data-testid="stPageLink"] a:hover {
+            color: #A7F3D0 !important;
+            border-color: rgba(20,184,166,0.65) !important;
+            background: rgba(20,184,166,0.16) !important;
+            transform: translateX(3px);
+        }
+
+        .stButton > button {
+            background: linear-gradient(135deg, var(--teal), var(--blue));
+            color: #06121F;
+            border: 0;
         }
 
         .stDownloadButton > button {
-            border-radius: 12px;
             border: 1px solid var(--border);
             background: rgba(255,255,255,0.05);
             color: var(--text);
@@ -303,6 +305,10 @@ def apply_theme() -> None:
         unsafe_allow_html=True,
     )
 
+
+# ============================================================
+# PAGE OBJECTS
+# ============================================================
 
 def page_header(title: str, subtitle: str) -> None:
     st.markdown(
@@ -315,14 +321,6 @@ def page_header(title: str, subtitle: str) -> None:
         """,
         unsafe_allow_html=True,
     )
-
-
-def nav_button(label: str, url_path: str) -> None:
-    st.link_button(label, url_path, width="stretch")
-
-
-def action_button(label: str, url_path: str) -> None:
-    st.link_button(label, url_path, width="stretch")
 
 
 def metric_card(label: str, value: Any, caption: str = "") -> None:
@@ -367,16 +365,16 @@ def render_sidebar() -> None:
             unsafe_allow_html=True,
         )
 
-        nav_button("Home", "/")
-        nav_button("Start Analysis", "/Start_Analysis")
-        nav_button("AI Image Detection", "/AI_Generated_Image_Detection")
-        nav_button("Receipt Verification", "/Receipt_Verification")
-        nav_button("Image Tampering Detection", "/Image_Tampering_Detection")
-        nav_button("About", "/About")
-        nav_button("Admin Login", "/admin_login")
+        st.page_link(HOME_PAGE, label="Home")
+        st.page_link(START_ANALYSIS_PAGE, label="Start Analysis")
+        st.page_link(AI_DETECTION_PAGE, label="AI Image Detection")
+        st.page_link(RECEIPT_PAGE, label="Receipt Verification")
+        st.page_link(TAMPERING_PAGE, label="Image Tampering Detection")
+        st.page_link(ABOUT_PAGE, label="About")
+        st.page_link(ADMIN_LOGIN_PAGE, label="Admin Login")
 
         if st.session_state.get("is_admin"):
-            nav_button("Admin Dashboard", "/Admin_Dashboard")
+            st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
 
         st.markdown("---")
         st.markdown(
@@ -538,9 +536,14 @@ def render_ai_image_result(result: dict[str, Any]) -> None:
         )
 
     with col3:
-        metric_card("Risk Score", result.get("risk_score", "N/A"), result.get("risk_level", ""))
+        metric_card(
+            "Risk Score",
+            result.get("risk_score", "N/A"),
+            result.get("risk_level", ""),
+        )
 
     status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
+
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
     _render_visualization(result, title="Grad-CAM Explainability")
@@ -609,7 +612,6 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     )
 
     st.markdown("### Metadata Validation")
-
     validation_checks = result.get("validation_checks") or [
         {"Check": "Merchant Found", "Result": "Passed" if validation.get("merchant_found") else "Review Needed"},
         {"Check": "Invoice Found", "Result": "Passed" if validation.get("invoice_found") else "Review Needed"},
@@ -648,7 +650,11 @@ def render_tampering_result(result: dict[str, Any]) -> None:
         )
 
     with col3:
-        metric_card("Risk Score", result.get("risk_score", "N/A"), result.get("risk_level", ""))
+        metric_card(
+            "Risk Score",
+            result.get("risk_score", "N/A"),
+            result.get("risk_level", ""),
+        )
 
     st.markdown("### Forensic Details")
     st.dataframe(
@@ -673,6 +679,7 @@ def render_tampering_result(result: dict[str, Any]) -> None:
     )
 
     status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
+
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
     _render_visualization(result, title="Tampering Heatmap")
@@ -738,7 +745,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open AI Detection", "/AI_Generated_Image_Detection")
+        st.page_link(AI_DETECTION_PAGE, label="Open AI Detection")
 
     with col2:
         st.markdown(
@@ -754,7 +761,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open Receipt Verification", "/Receipt_Verification")
+        st.page_link(RECEIPT_PAGE, label="Open Receipt Verification")
 
     with col3:
         st.markdown(
@@ -770,7 +777,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open Tampering Detection", "/Image_Tampering_Detection")
+        st.page_link(TAMPERING_PAGE, label="Open Tampering Detection")
 
 
 def render_module_cards() -> None:
@@ -785,7 +792,10 @@ def render_workflow() -> None:
 
     for col, step in zip(cols, steps):
         with col:
-            st.markdown(f"<div class='workflow-step'>{step}</div>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div class='workflow-step'>{step}</div>",
+                unsafe_allow_html=True,
+            )
 
 
 def render_home() -> None:
@@ -819,7 +829,7 @@ def render_home() -> None:
             unsafe_allow_html=True,
         )
 
-        action_button("Start Analysis", "/Start_Analysis")
+        st.page_link(START_ANALYSIS_PAGE, label="Start Analysis")
 
     with right:
         metric_card("Detection Modules", "3", "Images, receipts, tampering")
@@ -887,10 +897,85 @@ def render_home() -> None:
     render_footer()
 
 
-if __name__ == "__main__":
+# ============================================================
+# STREAMLIT PAGE REGISTRATION
+# ============================================================
+
+HOME_PAGE = st.Page(
+    render_home,
+    title="Home",
+    url_path="",
+    default=True,
+)
+
+START_ANALYSIS_PAGE = st.Page(
+    "pages/7_Start_Analysis.py",
+    title="Start Analysis",
+    url_path="Start_Analysis",
+)
+
+AI_DETECTION_PAGE = st.Page(
+    "pages/2_AI_Generated_Image_Detection.py",
+    title="AI Image Detection",
+    url_path="AI_Generated_Image_Detection",
+)
+
+RECEIPT_PAGE = st.Page(
+    "pages/3_Receipt_Verification.py",
+    title="Receipt Verification",
+    url_path="Receipt_Verification",
+)
+
+TAMPERING_PAGE = st.Page(
+    "pages/4_Image_Tampering_Detection.py",
+    title="Image Tampering Detection",
+    url_path="Image_Tampering_Detection",
+)
+
+ABOUT_PAGE = st.Page(
+    "pages/6_About.py",
+    title="About",
+    url_path="About",
+)
+
+ADMIN_LOGIN_PAGE = st.Page(
+    "pages/8_admin_login.py",
+    title="Admin Login",
+    url_path="admin_login",
+)
+
+ADMIN_DASHBOARD_PAGE = st.Page(
+    "pages/5_Admin_Dashboard.py",
+    title="Admin Dashboard",
+    url_path="Admin_Dashboard",
+)
+
+
+def main() -> None:
     st.set_page_config(
         page_title=f"{APP_TITLE} | Home",
         layout="wide",
         initial_sidebar_state="expanded",
     )
-    render_home()
+
+    pages = [
+        HOME_PAGE,
+        START_ANALYSIS_PAGE,
+        AI_DETECTION_PAGE,
+        RECEIPT_PAGE,
+        TAMPERING_PAGE,
+        ABOUT_PAGE,
+        ADMIN_LOGIN_PAGE,
+        ADMIN_DASHBOARD_PAGE,
+    ]
+
+    selected_page = st.navigation(
+        pages,
+        position="hidden",
+    )
+
+    selected_page.run()
+
+
+if __name__ == "__main__":
+    main()
