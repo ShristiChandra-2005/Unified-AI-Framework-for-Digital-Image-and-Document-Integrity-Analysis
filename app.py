@@ -5,6 +5,7 @@ from uuid import uuid4
 import streamlit as st
 
 
+
 APP_TITLE = "VeriShield AI"
 APP_SUBTITLE = "Enterprise Digital Fraud Detection & Integrity Platform"
 
@@ -21,6 +22,17 @@ def apply_theme() -> None:
         """
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        [data-testid="stSidebarNav"],
+        [data-testid="stSidebarNavItems"],
+        [data-testid="stSidebarNavSeparator"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+        }
 
         header[data-testid="stHeader"] {
             background: transparent;
@@ -386,23 +398,16 @@ def render_sidebar() -> None:
             unsafe_allow_html=True,
         )
 
-        # These reference the st.Page objects registered below (via
-        # st.navigation), not raw file path strings. That's what lets
-        # st.navigation(position="hidden") stay in charge of routing
-        # without ever rendering (and then having to hide) its own
-        # native nav list - which is what caused the 1-2s flash.
-        st.page_link(HOME_PAGE, label="Home")
-        st.page_link(START_ANALYSIS_PAGE, label="Start Analysis")
-        st.page_link(AI_DETECTION_PAGE, label="AI Image Detection")
-        st.page_link(RECEIPT_PAGE, label="Receipt Verification")
-        st.page_link(TAMPERING_PAGE, label="Image Tampering Detection")
-        st.page_link(ABOUT_PAGE, label="About")
+        st.page_link("app.py", label="Home")
+        st.page_link("pages/7_Start_Analysis.py", label="Start Analysis")
+        st.page_link("pages/2_AI_Generated_Image_Detection.py", label="AI Image Detection")
+        st.page_link("pages/3_Receipt_Verification.py", label="Receipt Verification")
+        st.page_link("pages/4_Image_Tampering_Detection.py", label="Image Tampering Detection")
+        st.page_link("pages/6_About.py", label="About")
+        st.page_link("pages/8_admin_login.py", label="Admin Login")
 
         if st.session_state.get("is_admin"):
-            if ADMIN_DASHBOARD_PAGE:
-                st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
-        elif ADMIN_LOGIN_PAGE:
-            st.page_link(ADMIN_LOGIN_PAGE, label="Admin Login")
+            st.page_link("pages/5_Admin_Dashboard.py", label="Admin Dashboard")
 
         st.markdown("---")
         st.markdown(
@@ -826,7 +831,10 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        st.page_link(AI_DETECTION_PAGE, label="Open AI Detection")
+        st.page_link(
+            "pages/2_AI_Generated_Image_Detection.py",
+            label="Open AI Detection",
+        )
 
     with col2:
         st.markdown(
@@ -842,7 +850,10 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        st.page_link(RECEIPT_PAGE, label="Open Receipt Verification")
+        st.page_link(
+            "pages/3_Receipt_Verification.py",
+            label="Open Receipt Verification",
+        )
 
     with col3:
         st.markdown(
@@ -858,7 +869,10 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        st.page_link(TAMPERING_PAGE, label="Open Tampering Detection")
+        st.page_link(
+            "pages/4_Image_Tampering_Detection.py",
+            label="Open Tampering Detection",
+        )
 
 
 def render_module_cards() -> None:
@@ -910,7 +924,7 @@ def render_home() -> None:
             unsafe_allow_html=True,
         )
 
-        st.page_link(START_ANALYSIS_PAGE, label="Start Analysis")
+        st.page_link("pages/7_Start_Analysis.py", label="Start Analysis")
 
     with right:
         metric_card("Detection Modules", "3", "Images, receipts, tampering")
@@ -978,105 +992,10 @@ def render_home() -> None:
     render_footer()
 
 
-# ============================================================================
-# PAGE REGISTRY
-#
-# Defined unconditionally at module level (NOT inside `if __name__ ==
-# "__main__"`) because every page file does `from app import render_sidebar`,
-# which imports this module WITHOUT __main__ being true. render_sidebar()
-# references these names, so they must exist regardless of how app.py is
-# loaded - only st.set_page_config() and the actual navigation.run() call
-# below need to be guarded to "real entry point run only".
-# ============================================================================
-
-def _page_if_exists(path_str: str, **kwargs: Any):
-    """Register a file-based page only if the file actually exists.
-
-    A st.Page() pointing at a file that isn't really there (wrong name,
-    wrong path, not committed yet) is exactly what threw
-    StreamlitPageNotFoundError here - and because it was registered
-    inside render_sidebar(), that one bad reference took down every
-    page's sidebar, not just the admin link. This keeps a single
-    missing/misnamed file from crashing the whole app; the link
-    (e.g. Admin Login) is simply skipped until the file is added.
-    """
-    if (BASE_DIR / path_str).exists():
-        return st.Page(path_str, **kwargs)
-    return None
-
-
-HOME_PAGE = st.Page(render_home, title="Home", url_path="home", default=True)
-START_ANALYSIS_PAGE = st.Page(
-    "pages/7_Start_Analysis.py", title="Start Analysis", url_path="start-analysis"
-)
-AI_DETECTION_PAGE = st.Page(
-    "pages/2_AI_Generated_Image_Detection.py",
-    title="AI Image Detection",
-    url_path="ai-detection",
-)
-RECEIPT_PAGE = st.Page(
-    "pages/3_Receipt_Verification.py",
-    title="Receipt Verification",
-    url_path="receipt-verification",
-)
-TAMPERING_PAGE = st.Page(
-    "pages/4_Image_Tampering_Detection.py",
-    title="Image Tampering Detection",
-    url_path="tampering-detection",
-)
-ABOUT_PAGE = st.Page("pages/6_About.py", title="About", url_path="about")
-
-# These two are guarded - if either file is missing/misnamed in your repo,
-# the app keeps working and simply won't show that one sidebar link,
-# instead of throwing StreamlitPageNotFoundError for every page.
-ADMIN_LOGIN_PAGE = _page_if_exists(
-    "pages/8_admin_login.py", title="Admin Login", url_path="admin-login"
-)
-ADMIN_DASHBOARD_PAGE = _page_if_exists(
-    "pages/5_Admin_Dashboard.py", title="Admin Dashboard", url_path="admin-dashboard"
-)
-
-ALL_PAGES = [
-    page
-    for page in [
-        HOME_PAGE,
-        START_ANALYSIS_PAGE,
-        AI_DETECTION_PAGE,
-        RECEIPT_PAGE,
-        TAMPERING_PAGE,
-        ABOUT_PAGE,
-        ADMIN_LOGIN_PAGE,
-        ADMIN_DASHBOARD_PAGE,
-    ]
-    if page is not None
-]
-
-
-# ============================================================================
-# ROUTING - this is the actual fix for the sidebar-nav flash.
-#
-# Previously, Streamlit's own default nav list rendered for a moment on
-# every page load, and only got hidden once our CSS (`display:none`)
-# reached the browser a beat later - that gap was the 1-2s flash.
-#
-# st.navigation(pages, position="hidden") tells Streamlit to never build
-# that default nav list in the first place, so there's nothing left to
-# flash. Our own render_sidebar() links above still work exactly the
-# same as before.
-#
-# This block only runs when Streamlit executes app.py as the real entry
-# point (__name__ == "__main__"). When a page file does
-# `from app import render_sidebar`, this import does NOT re-trigger
-# set_page_config or navigation - it only pulls in the functions/pages
-# defined above.
-# ============================================================================
-
 if __name__ == "__main__":
     st.set_page_config(
         page_title=f"{APP_TITLE} | Home",
         layout="wide",
         initial_sidebar_state="expanded",
     )
-
-    pg = st.navigation(ALL_PAGES, position="hidden")
-    pg.run()
+    render_home()
