@@ -1,0 +1,87 @@
+{
+    "success": true,
+    "project_name": "VeriShield AI",
+    "project_subtitle": "Enterprise Digital Fraud Detection & Integrity Platform",
+    "backend_version": "1.0",
+    "report_version": "v1",
+    "module": "Module 3 - Image Tampering Detection",
+    "prediction": "Tampered",
+    "confidence": 94.37,
+    "confidence_label": "High",
+    "risk_level": "High",
+    "risk_score": 94.37,
+    "status": "Completed",
+    "processing_time": 292.6,
+    "processing_time_ms": 292.6,
+    "timestamp": "2026-08-10 23:26:15",
+    "device": "cuda",
+    "report_id": "module3_20260810_232615_375fd0ff",
+    "report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260810_232615_375fd0ff.json",
+    "pdf_report_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260810_232615_375fd0ff.pdf",
+    "decision_summary": {
+        "title": "High Risk Image Tampering Decision",
+        "prediction": "Tampered",
+        "confidence": "94.37%",
+        "risk": "High",
+        "recommendation": "Manual verification recommended before using this image as trusted evidence.",
+        "summary": [
+            "Manipulation status: Tampered.",
+            "The tampering detector confidence is 94.37% (High).",
+            "The image contains visual patterns consistent with possible digital manipulation.",
+            "Risk level is high, so manual forensic verification is recommended.",
+            "Tampering heatmap is available and highlights the region used for the model decision.",
+            "Recommendation: Manual verification recommended before using this image as trusted evidence."
+        ]
+    },
+    "visualization": {
+        "gradcam": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_tampering_gradcam_Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c_20260810_232615.png",
+        "heatmap": null,
+        "overlay": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_tampering_gradcam_Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c_20260810_232615.png",
+        "error": "N/A"
+    },
+    "visualization_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_tampering_gradcam_Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c_20260810_232615.png",
+    "visualization_error": "N/A",
+    "probabilities": {
+        "Authentic": 5.63,
+        "Tampered": 94.37
+    },
+    "uploaded_image": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\temp\\Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c.jpg",
+    "image_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\temp\\Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c.jpg",
+    "model": {
+        "name": "efficientnet",
+        "version": "N/A",
+        "dataset": "CASIA v2 + IMD2020",
+        "accuracy": "N/A",
+        "precision": "N/A",
+        "recall": "N/A",
+        "f1_score": "N/A"
+    },
+    "model_load_mode": "strict=True",
+    "details": {
+        "manipulation_status": "Tampered",
+        "prediction": "Tampered",
+        "confidence": 94.37,
+        "tampering_type": "Strong suspected manipulation",
+        "affected_region": "High-confidence manipulated region highlighted in heatmap",
+        "localization_status": "Available",
+        "heatmap_status": "Displayed below",
+        "risk_level": "High",
+        "recommendation": "Manual forensic verification recommended before using this image as trusted digital evidence."
+    },
+    "heatmap_path": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\visualizations\\module3_tampering_gradcam_Tp_D_CNN_M_B_nat10139_nat00059_11949_f53ea83c_20260810_232615.png",
+    "raw_prediction": "Tampered",
+    "manipulation_status": "Tampered",
+    "tampering_type": "Strong suspected manipulation",
+    "affected_region": "High-confidence manipulated region highlighted in heatmap",
+    "localization_status": "Available",
+    "heatmap_status": "Displayed below",
+    "recommendation": "Manual forensic verification recommended before using this image as trusted digital evidence.",
+    "pdf_error": null,
+    "report": {
+        "id": "module3_20260810_232615_375fd0ff",
+        "json": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260810_232615_375fd0ff.json",
+        "pdf": "E:\\Intership_project\\Unified_AI_Framework\\outputs\\reports\\module3_20260810_232615_375fd0ff.pdf",
+        "created": "2026-08-10 23:26:15",
+        "downloadable": true
+    }
+}
