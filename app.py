@@ -399,8 +399,9 @@ def render_sidebar() -> None:
         st.page_link(ABOUT_PAGE, label="About")
 
         if st.session_state.get("is_admin"):
-            st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
-        else:
+            if ADMIN_DASHBOARD_PAGE:
+                st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
+        elif ADMIN_LOGIN_PAGE:
             st.page_link(ADMIN_LOGIN_PAGE, label="Admin Login")
 
         st.markdown("---")
@@ -988,6 +989,22 @@ def render_home() -> None:
 # below need to be guarded to "real entry point run only".
 # ============================================================================
 
+def _page_if_exists(path_str: str, **kwargs: Any):
+    """Register a file-based page only if the file actually exists.
+
+    A st.Page() pointing at a file that isn't really there (wrong name,
+    wrong path, not committed yet) is exactly what threw
+    StreamlitPageNotFoundError here - and because it was registered
+    inside render_sidebar(), that one bad reference took down every
+    page's sidebar, not just the admin link. This keeps a single
+    missing/misnamed file from crashing the whole app; the link
+    (e.g. Admin Login) is simply skipped until the file is added.
+    """
+    if (BASE_DIR / path_str).exists():
+        return st.Page(path_str, **kwargs)
+    return None
+
+
 HOME_PAGE = st.Page(render_home, title="Home", url_path="home", default=True)
 START_ANALYSIS_PAGE = st.Page(
     "pages/7_Start_Analysis.py", title="Start Analysis", url_path="start-analysis"
@@ -1008,22 +1025,30 @@ TAMPERING_PAGE = st.Page(
     url_path="tampering-detection",
 )
 ABOUT_PAGE = st.Page("pages/6_About.py", title="About", url_path="about")
-ADMIN_LOGIN_PAGE = st.Page(
+
+# These two are guarded - if either file is missing/misnamed in your repo,
+# the app keeps working and simply won't show that one sidebar link,
+# instead of throwing StreamlitPageNotFoundError for every page.
+ADMIN_LOGIN_PAGE = _page_if_exists(
     "pages/8_admin_login.py", title="Admin Login", url_path="admin-login"
 )
-ADMIN_DASHBOARD_PAGE = st.Page(
+ADMIN_DASHBOARD_PAGE = _page_if_exists(
     "pages/5_Admin_Dashboard.py", title="Admin Dashboard", url_path="admin-dashboard"
 )
 
 ALL_PAGES = [
-    HOME_PAGE,
-    START_ANALYSIS_PAGE,
-    AI_DETECTION_PAGE,
-    RECEIPT_PAGE,
-    TAMPERING_PAGE,
-    ABOUT_PAGE,
-    ADMIN_LOGIN_PAGE,
-    ADMIN_DASHBOARD_PAGE,
+    page
+    for page in [
+        HOME_PAGE,
+        START_ANALYSIS_PAGE,
+        AI_DETECTION_PAGE,
+        RECEIPT_PAGE,
+        TAMPERING_PAGE,
+        ABOUT_PAGE,
+        ADMIN_LOGIN_PAGE,
+        ADMIN_DASHBOARD_PAGE,
+    ]
+    if page is not None
 ]
 
 
