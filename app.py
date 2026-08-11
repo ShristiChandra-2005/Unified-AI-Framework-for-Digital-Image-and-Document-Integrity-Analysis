@@ -44,7 +44,6 @@ def apply_theme() -> None:
             --bg: #101827;
             --panel: #172235;
             --panel-2: #1D2B42;
-            --panel-3: #20314A;
             --teal: #14B8A6;
             --blue: #38BDF8;
             --gold: #FBBF24;
@@ -105,45 +104,6 @@ def apply_theme() -> None:
             margin-top: 0.35rem;
         }
 
-        .custom-nav-link {
-            display: block;
-            text-decoration: none !important;
-            color: #F8FAFC !important;
-            padding: 0.72rem 0.85rem;
-            margin: 0.42rem 0;
-            border-radius: 12px;
-            border: 1px solid rgba(20,184,166,0.22);
-            background: rgba(20,184,166,0.08);
-            font-weight: 800;
-            transition: 0.18s ease;
-        }
-
-        .custom-nav-link:hover {
-            color: #A7F3D0 !important;
-            border-color: rgba(20,184,166,0.65);
-            background: rgba(20,184,166,0.16);
-            transform: translateX(3px);
-        }
-
-        .action-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none !important;
-            color: #06121F !important;
-            background: linear-gradient(135deg, var(--teal), var(--blue));
-            border-radius: 12px;
-            padding: 0.72rem 1rem;
-            font-weight: 800;
-            margin-top: 0.75rem;
-            transition: 0.18s ease;
-        }
-
-        .action-link:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
-        }
-
         .hero {
             background:
                 linear-gradient(135deg, rgba(29,43,66,0.96), rgba(18,49,58,0.94));
@@ -182,7 +142,6 @@ def apply_theme() -> None:
             max-width: 900px;
         }
 
-        .card,
         .soft-card,
         .metric-card {
             background: rgba(29,43,66,0.88);
@@ -228,8 +187,7 @@ def apply_theme() -> None:
         }
 
         .module-card p,
-        .soft-card p,
-        .card p {
+        .soft-card p {
             color: var(--muted);
             line-height: 1.6;
             font-size: 0.94rem;
@@ -323,6 +281,12 @@ def apply_theme() -> None:
             border: 0;
             font-weight: 800;
             min-height: 2.7rem;
+            transition: 0.18s ease;
+        }
+
+        .stButton > button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
         }
 
         .stDownloadButton > button {
@@ -351,26 +315,18 @@ def page_header(title: str, subtitle: str) -> None:
     )
 
 
-def nav_link(label: str, url_path: str) -> None:
-    st.markdown(
-        f"""
-        <a class="custom-nav-link" href="{url_path}" target="_self">
-            {label}
-        </a>
-        """,
-        unsafe_allow_html=True,
-    )
+def go_to_page(page_path: str) -> None:
+    st.switch_page(page_path)
 
 
-def action_link(label: str, url_path: str) -> None:
-    st.markdown(
-        f"""
-        <a class="action-link" href="{url_path}" target="_self">
-            {label}
-        </a>
-        """,
-        unsafe_allow_html=True,
-    )
+def nav_button(label: str, page_path: str) -> None:
+    if st.button(label, width="stretch", key=f"nav_{label}"):
+        go_to_page(page_path)
+
+
+def action_button(label: str, page_path: str) -> None:
+    if st.button(label, width="stretch", key=f"action_{label}"):
+        go_to_page(page_path)
 
 
 def metric_card(label: str, value: Any, caption: str = "") -> None:
@@ -415,16 +371,16 @@ def render_sidebar() -> None:
             unsafe_allow_html=True,
         )
 
-        nav_link("Home", "/")
-        nav_link("Start Analysis", "/Start_Analysis")
-        nav_link("AI Image Detection", "/AI_Generated_Image_Detection")
-        nav_link("Receipt Verification", "/Receipt_Verification")
-        nav_link("Image Tampering Detection", "/Image_Tampering_Detection")
-        nav_link("About", "/About")
-        nav_link("Admin Login", "/admin_login")
+        nav_button("Home", "app.py")
+        nav_button("Start Analysis", "pages/7_Start_Analysis.py")
+        nav_button("AI Image Detection", "pages/2_AI_Generated_Image_Detection.py")
+        nav_button("Receipt Verification", "pages/3_Receipt_Verification.py")
+        nav_button("Image Tampering Detection", "pages/4_Image_Tampering_Detection.py")
+        nav_button("About", "pages/6_About.py")
+        nav_button("Admin Login", "pages/8_admin_login.py")
 
         if st.session_state.get("is_admin"):
-            nav_link("Admin Dashboard", "/Admin_Dashboard")
+            nav_button("Admin Dashboard", "pages/5_Admin_Dashboard.py")
 
         st.markdown("---")
         st.markdown(
@@ -701,11 +657,7 @@ def render_receipt_result(result: dict[str, Any]) -> None:
         },
     ]
 
-    st.dataframe(
-        validation_checks,
-        width="stretch",
-        hide_index=True,
-    )
+    st.dataframe(validation_checks, width="stretch", hide_index=True)
 
     ocr = result.get("ocr", {})
     detected_text = ocr.get("detected_text") or ocr.get("text")
@@ -841,7 +793,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_link("Open AI Detection", "/AI_Generated_Image_Detection")
+        action_button("Open AI Detection", "pages/2_AI_Generated_Image_Detection.py")
 
     with col2:
         st.markdown(
@@ -857,7 +809,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_link("Open Receipt Verification", "/Receipt_Verification")
+        action_button("Open Receipt Verification", "pages/3_Receipt_Verification.py")
 
     with col3:
         st.markdown(
@@ -873,7 +825,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_link("Open Tampering Detection", "/Image_Tampering_Detection")
+        action_button("Open Tampering Detection", "pages/4_Image_Tampering_Detection.py")
 
 
 def render_module_cards() -> None:
@@ -925,7 +877,7 @@ def render_home() -> None:
             unsafe_allow_html=True,
         )
 
-        action_link("Start Analysis", "/Start_Analysis")
+        action_button("Start Analysis", "pages/7_Start_Analysis.py")
 
     with right:
         metric_card("Detection Modules", "3", "Images, receipts, tampering")
