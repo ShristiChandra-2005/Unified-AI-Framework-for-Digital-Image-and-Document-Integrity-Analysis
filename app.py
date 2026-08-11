@@ -43,7 +43,6 @@ def apply_theme() -> None:
         :root {
             --bg: #101827;
             --panel: #172235;
-            --panel-2: #1D2B42;
             --teal: #14B8A6;
             --blue: #38BDF8;
             --gold: #FBBF24;
@@ -274,17 +273,20 @@ def apply_theme() -> None:
             color: var(--text);
         }
 
-        .stButton > button {
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--teal), var(--blue));
-            color: #06121F;
-            border: 0;
-            font-weight: 800;
-            min-height: 2.7rem;
-            transition: 0.18s ease;
+        .stButton > button,
+        .stLinkButton > a {
+            border-radius: 12px !important;
+            background: linear-gradient(135deg, var(--teal), var(--blue)) !important;
+            color: #06121F !important;
+            border: 0 !important;
+            font-weight: 800 !important;
+            min-height: 2.7rem !important;
+            transition: 0.18s ease !important;
+            text-decoration: none !important;
         }
 
-        .stButton > button:hover {
+        .stButton > button:hover,
+        .stLinkButton > a:hover {
             transform: translateY(-2px);
             filter: brightness(1.08);
         }
@@ -315,18 +317,12 @@ def page_header(title: str, subtitle: str) -> None:
     )
 
 
-def go_to_page(page_path: str) -> None:
-    st.switch_page(page_path)
+def nav_button(label: str, url_path: str) -> None:
+    st.link_button(label, url_path, width="stretch")
 
 
-def nav_button(label: str, page_path: str) -> None:
-    if st.button(label, width="stretch", key=f"nav_{label}"):
-        go_to_page(page_path)
-
-
-def action_button(label: str, page_path: str) -> None:
-    if st.button(label, width="stretch", key=f"action_{label}"):
-        go_to_page(page_path)
+def action_button(label: str, url_path: str) -> None:
+    st.link_button(label, url_path, width="stretch")
 
 
 def metric_card(label: str, value: Any, caption: str = "") -> None:
@@ -371,16 +367,16 @@ def render_sidebar() -> None:
             unsafe_allow_html=True,
         )
 
-        nav_button("Home", "app.py")
-        nav_button("Start Analysis", "pages/7_Start_Analysis.py")
-        nav_button("AI Image Detection", "pages/2_AI_Generated_Image_Detection.py")
-        nav_button("Receipt Verification", "pages/3_Receipt_Verification.py")
-        nav_button("Image Tampering Detection", "pages/4_Image_Tampering_Detection.py")
-        nav_button("About", "pages/6_About.py")
-        nav_button("Admin Login", "pages/8_admin_login.py")
+        nav_button("Home", "/")
+        nav_button("Start Analysis", "/Start_Analysis")
+        nav_button("AI Image Detection", "/AI_Generated_Image_Detection")
+        nav_button("Receipt Verification", "/Receipt_Verification")
+        nav_button("Image Tampering Detection", "/Image_Tampering_Detection")
+        nav_button("About", "/About")
+        nav_button("Admin Login", "/admin_login")
 
         if st.session_state.get("is_admin"):
-            nav_button("Admin Dashboard", "pages/5_Admin_Dashboard.py")
+            nav_button("Admin Dashboard", "/Admin_Dashboard")
 
         st.markdown("---")
         st.markdown(
@@ -456,11 +452,7 @@ def render_downloads(result: dict[str, Any]) -> None:
                 width="stretch",
             )
         else:
-            st.button(
-                "JSON Report Not Available",
-                disabled=True,
-                width="stretch",
-            )
+            st.button("JSON Report Not Available", disabled=True, width="stretch")
 
     with col2:
         if pdf_bytes:
@@ -472,11 +464,7 @@ def render_downloads(result: dict[str, Any]) -> None:
                 width="stretch",
             )
         else:
-            st.button(
-                "PDF Report Not Available",
-                disabled=True,
-                width="stretch",
-            )
+            st.button("PDF Report Not Available", disabled=True, width="stretch")
 
 
 def render_summary(summary: Any) -> None:
@@ -550,17 +538,9 @@ def render_ai_image_result(result: dict[str, Any]) -> None:
         )
 
     with col3:
-        metric_card(
-            "Risk Score",
-            result.get("risk_score", "N/A"),
-            result.get("risk_level", ""),
-        )
+        metric_card("Risk Score", result.get("risk_score", "N/A"), result.get("risk_level", ""))
 
-    status_badge(
-        f"{result.get('risk_level', 'Unknown')} Risk",
-        result.get("risk_level"),
-    )
-
+    status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
     _render_visualization(result, title="Grad-CAM Explainability")
@@ -589,11 +569,7 @@ def render_receipt_result(result: dict[str, Any]) -> None:
         )
 
     with col2:
-        metric_card(
-            "Integrity Score",
-            f"{integrity_score}%",
-            "OCR + metadata validation",
-        )
+        metric_card("Integrity Score", f"{integrity_score}%", "OCR + metadata validation")
 
     with col3:
         metric_card(
@@ -635,26 +611,11 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     st.markdown("### Metadata Validation")
 
     validation_checks = result.get("validation_checks") or [
-        {
-            "Check": "Merchant Found",
-            "Result": "Passed" if validation.get("merchant_found") else "Review Needed",
-        },
-        {
-            "Check": "Invoice Found",
-            "Result": "Passed" if validation.get("invoice_found") else "Review Needed",
-        },
-        {
-            "Check": "Date Valid",
-            "Result": "Passed" if validation.get("date_valid") else "Review Needed",
-        },
-        {
-            "Check": "Amount Valid",
-            "Result": "Passed" if validation.get("amount_valid") else "Review Needed",
-        },
-        {
-            "Check": "Tax Consistent",
-            "Result": "Passed" if validation.get("tax_consistent") else "Review Needed",
-        },
+        {"Check": "Merchant Found", "Result": "Passed" if validation.get("merchant_found") else "Review Needed"},
+        {"Check": "Invoice Found", "Result": "Passed" if validation.get("invoice_found") else "Review Needed"},
+        {"Check": "Date Valid", "Result": "Passed" if validation.get("date_valid") else "Review Needed"},
+        {"Check": "Amount Valid", "Result": "Passed" if validation.get("amount_valid") else "Review Needed"},
+        {"Check": "Tax Consistent", "Result": "Passed" if validation.get("tax_consistent") else "Review Needed"},
     ]
 
     st.dataframe(validation_checks, width="stretch", hide_index=True)
@@ -664,12 +625,7 @@ def render_receipt_result(result: dict[str, Any]) -> None:
 
     if detected_text:
         st.markdown("### OCR Text")
-        st.text_area(
-            "Detected Text",
-            value=detected_text,
-            height=220,
-            disabled=True,
-        )
+        st.text_area("Detected Text", value=detected_text, height=220, disabled=True)
 
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
@@ -692,11 +648,7 @@ def render_tampering_result(result: dict[str, Any]) -> None:
         )
 
     with col3:
-        metric_card(
-            "Risk Score",
-            result.get("risk_score", "N/A"),
-            result.get("risk_level", ""),
-        )
+        metric_card("Risk Score", result.get("risk_score", "N/A"), result.get("risk_level", ""))
 
     st.markdown("### Forensic Details")
     st.dataframe(
@@ -713,21 +665,14 @@ def render_tampering_result(result: dict[str, Any]) -> None:
                 details.get("affected_region", result.get("affected_region", "N/A")),
                 details.get("localization_status", result.get("localization_status", "N/A")),
                 details.get("heatmap_status", result.get("heatmap_status", "N/A")),
-                details.get(
-                    "recommendation",
-                    result.get("recommendation", "Manual verification recommended."),
-                ),
+                details.get("recommendation", result.get("recommendation", "Manual verification recommended.")),
             ],
         },
         width="stretch",
         hide_index=True,
     )
 
-    status_badge(
-        f"{result.get('risk_level', 'Unknown')} Risk",
-        result.get("risk_level"),
-    )
-
+    status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
     _render_visualization(result, title="Tampering Heatmap")
@@ -793,7 +738,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open AI Detection", "pages/2_AI_Generated_Image_Detection.py")
+        action_button("Open AI Detection", "/AI_Generated_Image_Detection")
 
     with col2:
         st.markdown(
@@ -809,7 +754,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open Receipt Verification", "pages/3_Receipt_Verification.py")
+        action_button("Open Receipt Verification", "/Receipt_Verification")
 
     with col3:
         st.markdown(
@@ -825,7 +770,7 @@ def render_start_analysis() -> None:
             """,
             unsafe_allow_html=True,
         )
-        action_button("Open Tampering Detection", "pages/4_Image_Tampering_Detection.py")
+        action_button("Open Tampering Detection", "/Image_Tampering_Detection")
 
 
 def render_module_cards() -> None:
@@ -840,10 +785,7 @@ def render_workflow() -> None:
 
     for col, step in zip(cols, steps):
         with col:
-            st.markdown(
-                f"<div class='workflow-step'>{step}</div>",
-                unsafe_allow_html=True,
-            )
+            st.markdown(f"<div class='workflow-step'>{step}</div>", unsafe_allow_html=True)
 
 
 def render_home() -> None:
@@ -877,7 +819,7 @@ def render_home() -> None:
             unsafe_allow_html=True,
         )
 
-        action_button("Start Analysis", "pages/7_Start_Analysis.py")
+        action_button("Start Analysis", "/Start_Analysis")
 
     with right:
         metric_card("Detection Modules", "3", "Images, receipts, tampering")
