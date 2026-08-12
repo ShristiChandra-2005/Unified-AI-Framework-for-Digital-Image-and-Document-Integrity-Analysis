@@ -40,17 +40,42 @@ def load_reports() -> list[dict[str, Any]]:
     return reports
 
 
+def _safe_number(value: Any) -> float | None:
+    """Coerce a report value to float for a NUMERIC dataframe column.
+
+    This used to return the string "N/A" when conversion failed, which
+    mixed floats and strings in the same pandas column - exactly what
+    crashed Streamlit's Arrow conversion with:
+    "Could not convert 'N/A' with type str: tried to convert to double".
+
+    Returning None instead lets pandas represent the gap as NaN, which
+    Arrow handles natively in a float column. "N/A" is only for display
+    text (via format_display_number below), never inside a numeric
+    dataframe column.
+    """
+    try:
+        return round(float(value), 2)
+    except (TypeError, ValueError):
+        return None
+
+
+def format_display_number(value: float | None, suffix: str = "") -> str:
+    """Presentation-only formatting for metric_card()/text - not for dataframes."""
+    if value is None:
+        return "N/A"
+    return f"{value}{suffix}"
+
+
 def build_report_dataframe(reports: list[dict[str, Any]]) -> pd.DataFrame:
     rows = []
 
     for report in reports:
         module = report.get("module", "Unknown")
-        confidence = report.get("confidence", "N/A")
+        confidence = report.get("confidence")
         processing_time = (
             report.get("processing_time_ms")
             or report.get("processing_time")
             or report.get("processing", {}).get("time_ms")
-            or "N/A"
         )
 
         rows.append(
@@ -67,7 +92,17 @@ def build_report_dataframe(reports: list[dict[str, Any]]) -> pd.DataFrame:
             }
         )
 
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+
+    # Belt-and-suspenders: even if something upstream ever slips a stray
+    # string into one of these two columns again, force them back to a
+    # clean numeric dtype (bad values become NaN, not a crash) before any
+    # dataframe in this file ever gets displayed.
+    if not df.empty:
+        df["Confidence / Score"] = pd.to_numeric(df["Confidence / Score"], errors="coerce")
+        df["Processing Time (ms)"] = pd.to_numeric(df["Processing Time (ms)"], errors="coerce")
+
+    return df
 
 
 def _module_result(report: dict[str, Any]) -> str:
@@ -80,13 +115,6 @@ def _module_result(report: dict[str, Any]) -> str:
         return str(report.get("prediction") or "N/A")
 
     return str(report.get("prediction") or "N/A")
-
-
-def _safe_number(value: Any) -> float | str:
-    try:
-        return round(float(value), 2)
-    except (TypeError, ValueError):
-        return "N/A"
 
 
 def render_admin_guard() -> bool:
@@ -127,18 +155,16 @@ total_reports = len(reports)
 module_counts = Counter(report.get("module", "Unknown") for report in reports)
 risk_counts = Counter(report.get("risk_level", "Unknown") for report in reports)
 
-confidence_values = pd.to_numeric(
-    df["Confidence / Score"],
-    errors="coerce",
-) if not df.empty else pd.Series(dtype=float)
-
-processing_values = pd.to_numeric(
-    df["Processing Time (ms)"],
-    errors="coerce",
-) if not df.empty else pd.Series(dtype=float)
-
-avg_confidence = round(confidence_values.dropna().mean(), 2) if not confidence_values.dropna().empty else "N/A"
-avg_processing = round(processing_values.dropna().mean(), 2) if not processing_values.dropna().empty else "N/A"
+avg_confidence = (
+    round(df["Confidence / Score"].dropna().mean(), 2)
+    if not df.empty and not df["Confidence / Score"].dropna().empty
+    else None
+)
+avg_processing = (
+    round(df["Processing Time (ms)"].dropna().mean(), 2)
+    if not df.empty and not df["Processing Time (ms)"].dropna().empty
+    else None
+)
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -146,10 +172,18 @@ with col1:
     metric_card("Total Analyses", total_reports, "Generated JSON reports")
 
 with col2:
-    metric_card("Avg Confidence / Score", avg_confidence, "Across available reports")
+    metric_card(
+        "Avg Confidence / Score",
+        format_display_number(avg_confidence),
+        "Across available reports",
+    )
 
 with col3:
-    metric_card("Avg Processing Time", f"{avg_processing} ms", "Backend inference time")
+    metric_card(
+        "Avg Processing Time",
+        format_display_number(avg_processing, " ms"),
+        "Backend inference time",
+    )
 
 with col4:
     metric_card("PDF Reports", sum(1 for report in reports if report.get("_pdf_file")), "Generated PDF evidence")
@@ -246,12 +280,7 @@ left, right = st.columns(2, gap="large")
 
 with left:
     st.markdown("### Confidence / Integrity Score Trend")
-    trend_df = df.copy()
-    trend_df["Confidence / Score"] = pd.to_numeric(
-        trend_df["Confidence / Score"],
-        errors="coerce",
-    )
-    trend_df = trend_df.dropna(subset=["Confidence / Score"])
+    trend_df = df.dropna(subset=["Confidence / Score"])
 
     if trend_df.empty:
         st.info("No numeric confidence values available yet.")
@@ -272,12 +301,7 @@ with left:
 
 with right:
     st.markdown("### Processing Time")
-    time_df = df.copy()
-    time_df["Processing Time (ms)"] = pd.to_numeric(
-        time_df["Processing Time (ms)"],
-        errors="coerce",
-    )
-    time_df = time_df.dropna(subset=["Processing Time (ms)"])
+    time_df = df.dropna(subset=["Processing Time (ms)"])
 
     if time_df.empty:
         st.info("No processing time values available yet.")

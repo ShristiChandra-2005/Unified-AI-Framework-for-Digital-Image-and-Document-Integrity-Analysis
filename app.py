@@ -16,10 +16,6 @@ TEMP_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# ============================================================
-# THEME
-# ============================================================
-
 def apply_theme() -> None:
     st.markdown(
         """
@@ -33,6 +29,8 @@ def apply_theme() -> None:
         :root {
             --bg: #101827;
             --panel: #172235;
+            --panel-2: #1D2B42;
+            --panel-3: #20314A;
             --teal: #14B8A6;
             --blue: #38BDF8;
             --gold: #FBBF24;
@@ -131,6 +129,7 @@ def apply_theme() -> None:
             max-width: 900px;
         }
 
+        .card,
         .soft-card,
         .metric-card {
             background: rgba(29,43,66,0.88);
@@ -176,7 +175,8 @@ def apply_theme() -> None:
         }
 
         .module-card p,
-        .soft-card p {
+        .soft-card p,
+        .card p {
             color: var(--muted);
             line-height: 1.6;
             font-size: 0.94rem;
@@ -263,52 +263,41 @@ def apply_theme() -> None:
             color: var(--text);
         }
 
-        .stButton > button,
-        .stDownloadButton > button,
-        [data-testid="stPageLink"] a {
-            border-radius: 12px !important;
-            font-weight: 800 !important;
-            min-height: 2.7rem !important;
-            transition: 0.18s ease !important;
-        }
-
-        [data-testid="stPageLink"] a {
-            background: rgba(20,184,166,0.08) !important;
-            border: 1px solid rgba(20,184,166,0.22) !important;
-            color: #F8FAFC !important;
-            text-decoration: none !important;
-            padding: 0.72rem 0.85rem !important;
-            margin: 0.42rem 0 !important;
-        }
-
-        [data-testid="stPageLink"] a:hover {
-            color: #A7F3D0 !important;
-            border-color: rgba(20,184,166,0.65) !important;
-            background: rgba(20,184,166,0.16) !important;
-            transform: translateX(3px);
-        }
-
         .stButton > button {
+            border-radius: 12px;
             background: linear-gradient(135deg, var(--teal), var(--blue));
             color: #06121F;
             border: 0;
+            font-weight: 800;
+            min-height: 2.7rem;
         }
 
         .stDownloadButton > button {
+            border-radius: 12px;
             border: 1px solid var(--border);
             background: rgba(255,255,255,0.05);
             color: var(--text);
             font-weight: 700;
+        }
+
+        [data-testid="stPageLink"] a {
+            border-radius: 12px;
+            border: 1px solid rgba(20,184,166,0.22);
+            background: rgba(20,184,166,0.08);
+            padding: 0.55rem 0.75rem;
+            font-weight: 800;
+            transition: 0.18s ease;
+        }
+
+        [data-testid="stPageLink"] a:hover {
+            border-color: rgba(20,184,166,0.65);
+            background: rgba(20,184,166,0.16);
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-
-# ============================================================
-# PAGE OBJECTS
-# ============================================================
 
 def page_header(title: str, subtitle: str) -> None:
     st.markdown(
@@ -321,6 +310,38 @@ def page_header(title: str, subtitle: str) -> None:
         """,
         unsafe_allow_html=True,
     )
+
+
+def coalesce(*values: Any, default: Any = "N/A") -> Any:
+    """Return the first value that is genuinely present.
+
+    Plain `a or b or c` treats 0, 0.0, and "" as "missing", which silently
+    drops real values like a $0 tax field. This only falls through on
+    None or an empty string, so a legitimate 0 is kept.
+    """
+    for value in values:
+        if value is not None and value != "":
+            return value
+    return default
+
+
+def format_percent(value: Any) -> str:
+    """Format a confidence/risk value as a clean percentage.
+
+    Falls back to plain text when the value isn't numeric (e.g. "N/A"),
+    and clamps numeric values to 0-100 so the UI never shows a broken
+    figure like '142%' or the literal string 'N/A%'.
+    """
+    if value is None:
+        return "N/A"
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return str(value)
+
+    number = max(0.0, min(number, 100.0))
+    return f"{number:.1f}%"
 
 
 def metric_card(label: str, value: Any, caption: str = "") -> None:
@@ -365,16 +386,23 @@ def render_sidebar() -> None:
             unsafe_allow_html=True,
         )
 
+        # These reference the st.Page objects registered below (via
+        # st.navigation), not raw file path strings. That's what lets
+        # st.navigation(position="hidden") stay in charge of routing
+        # without ever rendering (and then having to hide) its own
+        # native nav list - which is what caused the 1-2s flash.
         st.page_link(HOME_PAGE, label="Home")
         st.page_link(START_ANALYSIS_PAGE, label="Start Analysis")
         st.page_link(AI_DETECTION_PAGE, label="AI Image Detection")
         st.page_link(RECEIPT_PAGE, label="Receipt Verification")
         st.page_link(TAMPERING_PAGE, label="Image Tampering Detection")
         st.page_link(ABOUT_PAGE, label="About")
-        st.page_link(ADMIN_LOGIN_PAGE, label="Admin Login")
 
         if st.session_state.get("is_admin"):
-            st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
+            if ADMIN_DASHBOARD_PAGE:
+                st.page_link(ADMIN_DASHBOARD_PAGE, label="Admin Dashboard")
+        elif ADMIN_LOGIN_PAGE:
+            st.page_link(ADMIN_LOGIN_PAGE, label="Admin Login")
 
         st.markdown("---")
         st.markdown(
@@ -450,7 +478,11 @@ def render_downloads(result: dict[str, Any]) -> None:
                 width="stretch",
             )
         else:
-            st.button("JSON Report Not Available", disabled=True, width="stretch")
+            st.button(
+                "JSON Report Not Available",
+                disabled=True,
+                width="stretch",
+            )
 
     with col2:
         if pdf_bytes:
@@ -462,7 +494,11 @@ def render_downloads(result: dict[str, Any]) -> None:
                 width="stretch",
             )
         else:
-            st.button("PDF Report Not Available", disabled=True, width="stretch")
+            st.button(
+                "PDF Report Not Available",
+                disabled=True,
+                width="stretch",
+            )
 
 
 def render_summary(summary: Any) -> None:
@@ -531,18 +567,21 @@ def render_ai_image_result(result: dict[str, Any]) -> None:
     with col2:
         metric_card(
             "Confidence",
-            f"{result.get('confidence', 'N/A')}%",
+            format_percent(result.get("confidence")),
             result.get("confidence_label", ""),
         )
 
     with col3:
         metric_card(
             "Risk Score",
-            result.get("risk_score", "N/A"),
+            format_percent(result.get("risk_score")),
             result.get("risk_level", ""),
         )
 
-    status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
+    status_badge(
+        f"{result.get('risk_level', 'Unknown')} Risk",
+        result.get("risk_level"),
+    )
 
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
@@ -555,11 +594,11 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     validation = result.get("validation", {})
     integrity = result.get("integrity", {})
 
-    integrity_score = (
-        integrity.get("integrity_score")
-        or result.get("integrity_score")
-        or result.get("confidence")
-        or "N/A"
+    integrity_score = coalesce(
+        integrity.get("integrity_score"),
+        result.get("integrity_score"),
+        result.get("confidence"),
+        default=None,
     )
 
     col1, col2, col3 = st.columns(3)
@@ -572,7 +611,11 @@ def render_receipt_result(result: dict[str, Any]) -> None:
         )
 
     with col2:
-        metric_card("Integrity Score", f"{integrity_score}%", "OCR + metadata validation")
+        metric_card(
+            "Integrity Score",
+            format_percent(integrity_score),
+            "OCR + metadata validation",
+        )
 
     with col3:
         metric_card(
@@ -582,6 +625,13 @@ def render_receipt_result(result: dict[str, Any]) -> None:
         )
 
     st.markdown("### Receipt Fields")
+
+    def _field(*sources: Any, default: str = "Not detected") -> str:
+        # Every value is cast to str so this column is never a mix of
+        # numbers and text - that mix is exactly what crashed Module 2
+        # ("Could not convert 'N/A' ... tried to convert to double").
+        return str(coalesce(*sources, default=default))
+
     st.dataframe(
         {
             "Field": [
@@ -596,15 +646,15 @@ def render_receipt_result(result: dict[str, Any]) -> None:
                 "Address",
             ],
             "Value": [
-                receipt.get("merchant") or result.get("merchant") or "Not detected",
-                receipt.get("invoice_number") or result.get("invoice_number") or "Not detected",
-                receipt.get("date") or result.get("invoice_date") or "Not detected",
-                receipt.get("subtotal") or result.get("subtotal") or "N/A",
-                receipt.get("tax") or result.get("tax") or "N/A",
-                receipt.get("total") or result.get("total_amount") or "Not detected",
-                receipt.get("currency") or result.get("currency") or "N/A",
-                receipt.get("phone") or result.get("phone") or "N/A",
-                receipt.get("address") or result.get("address") or "N/A",
+                _field(receipt.get("merchant"), result.get("merchant")),
+                _field(receipt.get("invoice_number"), result.get("invoice_number")),
+                _field(receipt.get("date"), result.get("invoice_date")),
+                _field(receipt.get("subtotal"), result.get("subtotal"), default="N/A"),
+                _field(receipt.get("tax"), result.get("tax"), default="N/A"),
+                _field(receipt.get("total"), result.get("total_amount")),
+                _field(receipt.get("currency"), result.get("currency"), default="N/A"),
+                _field(receipt.get("phone"), result.get("phone"), default="N/A"),
+                _field(receipt.get("address"), result.get("address"), default="N/A"),
             ],
         },
         width="stretch",
@@ -612,22 +662,47 @@ def render_receipt_result(result: dict[str, Any]) -> None:
     )
 
     st.markdown("### Metadata Validation")
+
     validation_checks = result.get("validation_checks") or [
-        {"Check": "Merchant Found", "Result": "Passed" if validation.get("merchant_found") else "Review Needed"},
-        {"Check": "Invoice Found", "Result": "Passed" if validation.get("invoice_found") else "Review Needed"},
-        {"Check": "Date Valid", "Result": "Passed" if validation.get("date_valid") else "Review Needed"},
-        {"Check": "Amount Valid", "Result": "Passed" if validation.get("amount_valid") else "Review Needed"},
-        {"Check": "Tax Consistent", "Result": "Passed" if validation.get("tax_consistent") else "Review Needed"},
+        {
+            "Check": "Merchant Found",
+            "Result": "Passed" if validation.get("merchant_found") else "Review Needed",
+        },
+        {
+            "Check": "Invoice Found",
+            "Result": "Passed" if validation.get("invoice_found") else "Review Needed",
+        },
+        {
+            "Check": "Date Valid",
+            "Result": "Passed" if validation.get("date_valid") else "Review Needed",
+        },
+        {
+            "Check": "Amount Valid",
+            "Result": "Passed" if validation.get("amount_valid") else "Review Needed",
+        },
+        {
+            "Check": "Tax Consistent",
+            "Result": "Passed" if validation.get("tax_consistent") else "Review Needed",
+        },
     ]
 
-    st.dataframe(validation_checks, width="stretch", hide_index=True)
+    st.dataframe(
+        validation_checks,
+        width="stretch",
+        hide_index=True,
+    )
 
     ocr = result.get("ocr", {})
     detected_text = ocr.get("detected_text") or ocr.get("text")
 
     if detected_text:
         st.markdown("### OCR Text")
-        st.text_area("Detected Text", value=detected_text, height=220, disabled=True)
+        st.text_area(
+            "Detected Text",
+            value=detected_text,
+            height=220,
+            disabled=True,
+        )
 
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
@@ -645,14 +720,14 @@ def render_tampering_result(result: dict[str, Any]) -> None:
     with col2:
         metric_card(
             "Confidence",
-            f"{result.get('confidence', 'N/A')}%",
+            format_percent(result.get("confidence")),
             result.get("confidence_label", ""),
         )
 
     with col3:
         metric_card(
             "Risk Score",
-            result.get("risk_score", "N/A"),
+            format_percent(result.get("risk_score")),
             result.get("risk_level", ""),
         )
 
@@ -671,18 +746,24 @@ def render_tampering_result(result: dict[str, Any]) -> None:
                 details.get("affected_region", result.get("affected_region", "N/A")),
                 details.get("localization_status", result.get("localization_status", "N/A")),
                 details.get("heatmap_status", result.get("heatmap_status", "N/A")),
-                details.get("recommendation", result.get("recommendation", "Manual verification recommended.")),
+                details.get(
+                    "recommendation",
+                    result.get("recommendation", "Manual verification recommended."),
+                ),
             ],
         },
         width="stretch",
         hide_index=True,
     )
 
-    status_badge(f"{result.get('risk_level', 'Unknown')} Risk", result.get("risk_level"))
+    status_badge(
+        f"{result.get('risk_level', 'Unknown')} Risk",
+        result.get("risk_level"),
+    )
 
     render_summary(result.get("decision_summary"))
     _render_processing_table(result)
-    _render_visualization(result, title="Tampering Heatmap")
+    _render_visualization(result, title="Tampering Grad-CAM Explainability")
     render_downloads(result)
 
 
@@ -694,9 +775,9 @@ def _render_processing_table(result: dict[str, Any]) -> None:
         {
             "Property": ["Processing Time", "Device", "Timestamp"],
             "Value": [
-                f"{result.get('processing_time_ms') or processing.get('time_ms', 'N/A')} ms",
-                result.get("device") or processing.get("device", "N/A"),
-                result.get("timestamp") or processing.get("timestamp", "N/A"),
+                f"{coalesce(result.get('processing_time_ms'), processing.get('time_ms'), default='N/A')} ms",
+                str(coalesce(result.get("device"), processing.get("device"))),
+                str(coalesce(result.get("timestamp"), processing.get("timestamp"))),
             ],
         },
         width="stretch",
@@ -852,7 +933,6 @@ def render_home() -> None:
     with c4:
         metric_card("Admin", "Dashboard", "Report analytics")
 
-    render_start_analysis()
     render_workflow()
 
     st.markdown("## Technology Stack")
@@ -897,68 +977,67 @@ def render_home() -> None:
     render_footer()
 
 
-# ============================================================
-# STREAMLIT PAGE REGISTRATION
-# ============================================================
+# ============================================================================
+# PAGE REGISTRY
+#
+# Defined unconditionally at module level (NOT inside `if __name__ ==
+# "__main__"`) because every page file does `from app import render_sidebar`,
+# which imports this module WITHOUT __main__ being true. render_sidebar()
+# references these names, so they must exist regardless of how app.py is
+# loaded - only st.set_page_config() and the actual navigation.run() call
+# below need to be guarded to "real entry point run only".
+# ============================================================================
 
-HOME_PAGE = st.Page(
-    render_home,
-    title="Home",
-    url_path="",
-    default=True,
-)
+def _page_if_exists(path_str: str, **kwargs: Any):
+    """Register a file-based page only if the file actually exists.
 
+    A st.Page() pointing at a file that isn't really there (wrong name,
+    wrong path, not committed yet) is exactly what threw
+    StreamlitPageNotFoundError here - and because it was registered
+    inside render_sidebar(), that one bad reference took down every
+    page's sidebar, not just the admin link. This keeps a single
+    missing/misnamed file from crashing the whole app; the link
+    (e.g. Admin Login) is simply skipped until the file is added.
+    """
+    if (BASE_DIR / path_str).exists():
+        return st.Page(path_str, **kwargs)
+    return None
+
+
+HOME_PAGE = st.Page(render_home, title="Home", url_path="home", default=True)
 START_ANALYSIS_PAGE = st.Page(
-    "pages/7_Start_Analysis.py",
-    title="Start Analysis",
-    url_path="Start_Analysis",
+    "pages/7_Start_Analysis.py", title="Start Analysis", url_path="start-analysis"
 )
-
 AI_DETECTION_PAGE = st.Page(
     "pages/2_AI_Generated_Image_Detection.py",
     title="AI Image Detection",
-    url_path="AI_Generated_Image_Detection",
+    url_path="ai-detection",
 )
-
 RECEIPT_PAGE = st.Page(
     "pages/3_Receipt_Verification.py",
     title="Receipt Verification",
-    url_path="Receipt_Verification",
+    url_path="receipt-verification",
 )
-
 TAMPERING_PAGE = st.Page(
     "pages/4_Image_Tampering_Detection.py",
     title="Image Tampering Detection",
-    url_path="Image_Tampering_Detection",
+    url_path="tampering-detection",
+)
+ABOUT_PAGE = st.Page("pages/6_About.py", title="About", url_path="about")
+
+# These two are guarded - if either file is missing/misnamed in your repo,
+# the app keeps working and simply won't show that one sidebar link,
+# instead of throwing StreamlitPageNotFoundError for every page.
+ADMIN_LOGIN_PAGE = _page_if_exists(
+    "pages/8_admin_login.py", title="Admin Login", url_path="admin-login"
+)
+ADMIN_DASHBOARD_PAGE = _page_if_exists(
+    "pages/5_Admin_Dashboard.py", title="Admin Dashboard", url_path="admin-dashboard"
 )
 
-ABOUT_PAGE = st.Page(
-    "pages/6_About.py",
-    title="About",
-    url_path="About",
-)
-
-ADMIN_LOGIN_PAGE = st.Page(
-    "pages/8_admin_login.py",
-    title="Admin Login",
-    url_path="admin_login",
-)
-
-ADMIN_DASHBOARD_PAGE = st.Page(
-    "pages/5_Admin_Dashboard.py",
-    title="Admin Dashboard",
-    url_path="Admin_Dashboard",
-)
-
-
-def main() -> None:
-    st.set_page_config(
-        page_title=f"{APP_TITLE} | Home",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
-
-    pages = [
+ALL_PAGES = [
+    page
+    for page in [
         HOME_PAGE,
         START_ANALYSIS_PAGE,
         AI_DETECTION_PAGE,
@@ -968,14 +1047,35 @@ def main() -> None:
         ADMIN_LOGIN_PAGE,
         ADMIN_DASHBOARD_PAGE,
     ]
+    if page is not None
+]
 
-    selected_page = st.navigation(
-        pages,
-        position="hidden",
-    )
 
-    selected_page.run()
-
+# ============================================================================
+# ROUTING - this is the actual fix for the sidebar-nav flash.
+#
+# Previously, Streamlit's own default nav list rendered for a moment on
+# every page load, and only got hidden once our CSS (`display:none`)
+# reached the browser a beat later - that gap was the 1-2s flash.
+#
+# st.navigation(pages, position="hidden") tells Streamlit to never build
+# that default nav list in the first place, so there's nothing left to
+# flash. Our own render_sidebar() links above still work exactly the
+# same as before.
+#
+# This block only runs when Streamlit executes app.py as the real entry
+# point (__name__ == "__main__"). When a page file does
+# `from app import render_sidebar`, this import does NOT re-trigger
+# set_page_config or navigation - it only pulls in the functions/pages
+# defined above.
+# ============================================================================
 
 if __name__ == "__main__":
-    main()
+    st.set_page_config(
+        page_title=f"{APP_TITLE} | Home",
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+
+    pg = st.navigation(ALL_PAGES, position="hidden")
+    pg.run()

@@ -8,6 +8,7 @@ from app import (
     render_sidebar,
     save_uploaded_file,
 )
+from inference.image_detector import predict_ai_image
 
 st.set_page_config(
     page_title="AI Generated Image Detection | VeriShield AI",
@@ -29,10 +30,20 @@ page_header(
 uploaded_file = st.file_uploader(
     "Upload image",
     type=["jpg", "jpeg", "png", "bmp", "webp"],
+    key="module1_uploader",
 )
 
 if uploaded_file:
-    image_path = save_uploaded_file(uploaded_file)
+    # Only save a new copy when this is a genuinely different upload -
+    # otherwise every rerun (e.g. clicking the button below) would write
+    # another duplicate file into outputs/temp.
+    if st.session_state.get("module1_uploaded_name") != uploaded_file.name:
+        st.session_state["module1_image_path"] = save_uploaded_file(uploaded_file)
+        st.session_state["module1_uploaded_name"] = uploaded_file.name
+        # A new file was uploaded, so any previous result is now stale.
+        st.session_state.pop("module1_result", None)
+
+    image_path = st.session_state["module1_image_path"]
 
     left, right = st.columns([0.9, 1.1], gap="large")
 
@@ -55,14 +66,12 @@ if uploaded_file:
             unsafe_allow_html=True,
         )
 
-        if st.button("Run AI Image Detection", width="stretch"):
+        if st.button("Run AI Image Detection", width="stretch", type="primary"):
             with st.spinner("Loading model and analyzing image..."):
                 try:
-                    from inference.image_detector import predict_ai_image
-
                     st.session_state["module1_result"] = predict_ai_image(image_path)
-
                 except Exception as error:
+                    st.session_state.pop("module1_result", None)
                     st.error("AI image detection failed.")
                     st.exception(error)
 

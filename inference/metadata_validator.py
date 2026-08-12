@@ -5,6 +5,19 @@ from typing import Any
 MANDATORY_FIELDS = ["merchant", "date", "total"]
 
 
+def _is_missing(value: Any) -> bool:
+    """A field is missing only if it's None or an empty/whitespace string.
+
+    `if not fields.get(field)` treats a real 0 (e.g. a $0 tax amount) as
+    "missing" too, since 0 is falsy in Python. That silently mislabels a
+    correct value as an error. This checks explicitly for None/empty
+    instead, so a real 0 stays valid.
+    """
+    if value is None:
+        return True
+    return str(value).strip() == ""
+
+
 def validate_receipt_fields(fields: dict[str, Any]) -> dict[str, Any]:
     """
     Validate extracted receipt fields using rule-based checks.
@@ -14,7 +27,7 @@ def validate_receipt_fields(fields: dict[str, Any]) -> dict[str, Any]:
 
     missing_fields = [
         field for field in MANDATORY_FIELDS
-        if not fields.get(field)
+        if _is_missing(fields.get(field))
     ]
 
     for field in missing_fields:
@@ -31,7 +44,7 @@ def validate_receipt_fields(fields: dict[str, Any]) -> dict[str, Any]:
 
     amount_valid = total is not None and total > 0
 
-    if fields.get("total") and not amount_valid:
+    if not _is_missing(fields.get("total")) and not amount_valid:
         issues.append("Invalid total amount")
 
     tax_consistent = True
@@ -49,10 +62,10 @@ def validate_receipt_fields(fields: dict[str, Any]) -> dict[str, Any]:
     if duplicate_fields:
         warnings.append(f"Duplicate amount values detected: {', '.join(duplicate_fields)}")
 
-    if not fields.get("invoice_number"):
+    if _is_missing(fields.get("invoice_number")):
         warnings.append("Invoice number not detected")
 
-    if not fields.get("currency"):
+    if _is_missing(fields.get("currency")):
         warnings.append("Currency not detected")
 
     if issues:
@@ -65,11 +78,11 @@ def validate_receipt_fields(fields: dict[str, Any]) -> dict[str, Any]:
     return {
         "status": status,
         "validation_status": status,
-        "merchant_found": bool(fields.get("merchant")),
-        "invoice_found": bool(fields.get("invoice_number")),
-        "date_found": bool(fields.get("date")),
+        "merchant_found": not _is_missing(fields.get("merchant")),
+        "invoice_found": not _is_missing(fields.get("invoice_number")),
+        "date_found": not _is_missing(fields.get("date")),
         "date_valid": date_valid,
-        "total_found": bool(fields.get("total")),
+        "total_found": not _is_missing(fields.get("total")),
         "amount_valid": amount_valid,
         "tax_consistent": tax_consistent,
         "duplicate_fields": duplicate_fields,
