@@ -10,12 +10,6 @@ from app import (
 )
 from inference.receipt_detector import verify_receipt
 
-st.set_page_config(
-    page_title="Receipt Verification | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
 apply_theme()
 render_sidebar()
 

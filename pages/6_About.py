@@ -3,12 +3,6 @@ import streamlit as st
 from app import apply_theme, metric_card, page_header, render_footer, render_sidebar
 
 
-st.set_page_config(
-    page_title="About",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
 apply_theme()
 render_sidebar()
 
@@ -105,3 +99,4 @@ st.markdown(
 )
 
 render_footer()
+

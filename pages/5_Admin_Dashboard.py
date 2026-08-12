@@ -8,6 +8,7 @@ import plotly.express as px
 import streamlit as st
 
 from app import (
+    ADMIN_LOGIN_PAGE,
     REPORTS_DIR,
     apply_theme,
     metric_card,
@@ -125,16 +126,10 @@ def render_admin_guard() -> bool:
     st.info("Admin authentication is required to view report analytics.")
 
     if st.button("Go to Admin Login", width="stretch"):
-        st.switch_page("pages/8_admin_login.py")
+        st.switch_page(ADMIN_LOGIN_PAGE)
 
     return False
 
-
-st.set_page_config(
-    page_title="Admin Dashboard | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 apply_theme()
 render_sidebar()
@@ -386,3 +381,5 @@ with download_col2:
         st.button("PDF Not Available", disabled=True, width="stretch")
 
 render_footer()
+
+

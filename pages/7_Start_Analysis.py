@@ -8,12 +8,6 @@ from app import (
     render_start_analysis,
 )
 
-st.set_page_config(
-    page_title="Start Analysis | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
 apply_theme()
 render_sidebar()
 
@@ -25,3 +19,4 @@ page_header(
 render_start_analysis()
 
 render_footer()
+

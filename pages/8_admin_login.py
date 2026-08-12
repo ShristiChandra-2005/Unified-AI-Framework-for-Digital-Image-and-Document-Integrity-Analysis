@@ -4,6 +4,7 @@ import hmac
 import streamlit as st
 
 from app import (
+    ADMIN_DASHBOARD_PAGE,
     apply_theme,
     page_header,
     render_footer,
@@ -81,14 +82,8 @@ def redirect_to_dashboard() -> None:
     Redirect authenticated admin user to dashboard.
     """
 
-    st.switch_page("pages/5_Admin_Dashboard.py")
+    st.switch_page(ADMIN_DASHBOARD_PAGE)
 
-
-st.set_page_config(
-    page_title="Admin Login | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 apply_theme()
 render_sidebar()
@@ -164,3 +159,6 @@ else:
                 st.error("Invalid username or password.")
 
 render_footer()
+
+
+

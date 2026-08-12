@@ -10,12 +10,6 @@ from app import (
 )
 from inference.tampering_detector import predict_tampering
 
-st.set_page_config(
-    page_title="Image Tampering Detection | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
 apply_theme()
 render_sidebar()
 

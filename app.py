@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -1004,35 +1004,35 @@ def _page_if_exists(path_str: str, **kwargs: Any):
     return None
 
 
-HOME_PAGE = st.Page(render_home, title="Home", url_path="home", default=True)
+HOME_PAGE = st.Page(render_home, title="Home", url_path="", default=True)
 START_ANALYSIS_PAGE = st.Page(
-    "pages/7_Start_Analysis.py", title="Start Analysis", url_path="start-analysis"
+    "pages/7_Start_Analysis.py", title="Start Analysis", url_path="Start_Analysis"
 )
 AI_DETECTION_PAGE = st.Page(
     "pages/2_AI_Generated_Image_Detection.py",
     title="AI Image Detection",
-    url_path="ai-detection",
+    url_path="AI_Generated_Image_Detection",
 )
 RECEIPT_PAGE = st.Page(
     "pages/3_Receipt_Verification.py",
     title="Receipt Verification",
-    url_path="receipt-verification",
+    url_path="Receipt_Verification",
 )
 TAMPERING_PAGE = st.Page(
     "pages/4_Image_Tampering_Detection.py",
     title="Image Tampering Detection",
-    url_path="tampering-detection",
+    url_path="Image_Tampering_Detection",
 )
-ABOUT_PAGE = st.Page("pages/6_About.py", title="About", url_path="about")
+ABOUT_PAGE = st.Page("pages/6_About.py", title="About", url_path="About")
 
 # These two are guarded - if either file is missing/misnamed in your repo,
 # the app keeps working and simply won't show that one sidebar link,
 # instead of throwing StreamlitPageNotFoundError for every page.
 ADMIN_LOGIN_PAGE = _page_if_exists(
-    "pages/8_admin_login.py", title="Admin Login", url_path="admin-login"
+    "pages/8_admin_login.py", title="Admin Login", url_path="admin_login"
 )
 ADMIN_DASHBOARD_PAGE = _page_if_exists(
-    "pages/5_Admin_Dashboard.py", title="Admin Dashboard", url_path="admin-dashboard"
+    "pages/5_Admin_Dashboard.py", title="Admin Dashboard", url_path="Admin_Dashboard"
 )
 
 ALL_PAGES = [

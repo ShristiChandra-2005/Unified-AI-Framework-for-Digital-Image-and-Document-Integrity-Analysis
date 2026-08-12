@@ -10,12 +10,6 @@ from app import (
 )
 from inference.image_detector import predict_ai_image
 
-st.set_page_config(
-    page_title="AI Generated Image Detection | VeriShield AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
 apply_theme()
 render_sidebar()
 
